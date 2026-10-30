@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c28d97cf-2dfa-4547-bdbf-2c629ef978e2" name="Changes" comment="Delete Other File" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;IT26101539&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IT26101539/Online-Toy-Store-Management-System.git&quot;,
+    &quot;accountId&quot;: &quot;604d1adc-69a4-4fb9-af56-ea3057ed9928&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000394442265947" />
+      <entry key="MS500" value="1.1549858470459708" />
+      <entry key="S2" value="2.2905491221698284" />
+      <entry key="S5" value="3.432855046948554" />
+      <entry key="S10" value="4.24407610738542" />
+      <entry key="S30" value="6.458794943141787" />
+      <entry key="S60" value="9.06340616848601" />
+      <entry key="M2" value="13.043647627552884" />
+      <entry key="M5" value="18.491428284339857" />
+      <entry key="M10" value="21.348252826659703" />
+      <entry key="M15" value="22.466466905191577" />
+      <entry key="M30" value="23.68072247130414" />
+      <entry key="H1" value="24.326639493460377" />
+      <entry key="H2" value="24.65981205089882" />
+      <entry key="H4" value="24.829019249201245" />
+      <entry key="D1" value="24.97137919938701" />
+      <entry key="W1" value="24.99590826616046" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9526755741129947" />
+      <entry key="MS500" value="1.1438252128295596" />
+      <entry key="S2" value="2.2847899690656575" />
+      <entry key="S5" value="3.4293061464255334" />
+      <entry key="S10" value="4.241861294606312" />
+      <entry key="S30" value="6.457482668883318" />
+      <entry key="S60" value="9.061265805973362" />
+      <entry key="M2" value="13.040486457521048" />
+      <entry key="M5" value="18.488777172745518" />
+      <entry key="M10" value="21.34654163058867" />
+      <entry key="M15" value="22.46522387266902" />
+      <entry key="M30" value="23.680045043223807" />
+      <entry key="H1" value="24.32628583262683" />
+      <entry key="H2" value="24.659631356171012" />
+      <entry key="H4" value="24.828927919383748" />
+      <entry key="D1" value="24.971363839888795" />
+      <entry key="W1" value="24.9959060685517" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3LQVoitewqdrthV6Rm96gUL1fJL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="toy-store" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="toy-store" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c28d97cf-2dfa-4547-bdbf-2c629ef978e2" name="Changes" comment="" />
+      <created>1793386458244</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1793386458244</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Delete the Admin folder" />
+    <MESSAGE value="Delete the Supplier folder" />
+    <MESSAGE value="Delete the User folder" />
+    <MESSAGE value="Delete the Common folder" />
+    <MESSAGE value="Delete the HTML files and folder" />
+    <MESSAGE value="Delete Other File" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete Other File" />
+  </component>
+</project>
