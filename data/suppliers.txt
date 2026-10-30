@@ -1,6 +1,0 @@
-S3A9F1C20|Lanka Toy Distributors|0112345678|Fisher-Price, Melissa & Doug|LOCAL|
-S7B24D8E1|Kandy Play House|0812223344|Hot Wheels, Barbie|LOCAL|
-SC51E09AB|Ceylon Kids Wholesale|info@ceylonkids.lk|Chicco, Hasbro|LOCAL|
-S09D3F6C7|Global Brands Inc|sales@globalbrands.com|LEGO, Mattel|INTERNATIONAL|
-SE8A2B41D|FunWorld Ltd|export@funworld.cn|Bandai, Funko|INTERNATIONAL|
-S4F60C9D3|EuroKids GmbH|export@eurokids.de|Playmobil, Ravensburger|INTERNATIONAL|
