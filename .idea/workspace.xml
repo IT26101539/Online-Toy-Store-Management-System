@@ -4,38 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2332115a-490f-428b-8854-a2362150b67f" name="Changes" comment="" />
+    <list default="true" id="2332115a-490f-428b-8854-a2362150b67f" name="Changes" comment="Update the .idea folder">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+      <option value="repository" />
+    </option>
+  </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="66" />
   </component>
+  <component name="Git.Settings">
+    <option name="INCOMING_COMMITS_CHECK_STRATEGY" value="FETCH" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IT26101539/Online-Toy-Store-Management-System.git&quot;,
+    &quot;accountId&quot;: &quot;604d1adc-69a4-4fb9-af56-ea3057ed9928&quot;
+  }
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000004053817" />
-      <entry key="MS500" value="1.0132303955056645" />
-      <entry key="S2" value="1.339151081861918" />
-      <entry key="S5" value="1.6488693834695916" />
-      <entry key="S10" value="1.8055242910487501" />
-      <entry key="S30" value="1.9304496578279933" />
-      <entry key="S60" value="1.9646191545743252" />
-      <entry key="M2" value="1.9915489904040296" />
-      <entry key="M5" value="2.38710189469857" />
-      <entry key="M10" value="3.3921023079547203" />
-      <entry key="M15" value="4.130191051364765" />
-      <entry key="M30" value="5.261861034106591" />
-      <entry key="H1" value="6.037877632470514" />
-      <entry key="H2" value="6.493085446190774" />
-      <entry key="H4" value="6.7397237446719265" />
-      <entry key="D1" value="6.955641745798303" />
-      <entry key="W1" value="6.993638708040758" />
+      <entry key="MS100" value="1.0037471254661143" />
+      <entry key="MS500" value="1.327803260426051" />
+      <entry key="S2" value="1.9329399463539" />
+      <entry key="S5" value="3.0538528413888826" />
+      <entry key="S10" value="5.4695674169015325" />
+      <entry key="S30" value="11.840119996932977" />
+      <entry key="S60" value="15.485607323842954" />
+      <entry key="M2" value="17.956474833125924" />
+      <entry key="M5" value="20.04968058453653" />
+      <entry key="M10" value="21.65041280814419" />
+      <entry key="M15" value="22.60318337496183" />
+      <entry key="M30" value="23.97401229571039" />
+      <entry key="H1" value="24.885696265024077" />
+      <entry key="H2" value="25.41458170507313" />
+      <entry key="H4" value="25.699819077274732" />
+      <entry key="D1" value="25.948895790365455" />
+      <entry key="W1" value="25.992672608233708" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -57,23 +76,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9395227495896336" />
-      <entry key="MS500" value="1.0006310340051376" />
-      <entry key="S2" value="1.3347462916250785" />
-      <entry key="S5" value="1.6466337742454056" />
-      <entry key="S10" value="1.8042867056344558" />
-      <entry key="S30" value="1.930005287870099" />
-      <entry key="S60" value="1.9643926128552593" />
-      <entry key="M2" value="1.991433335472219" />
-      <entry key="M5" value="2.3870284785150075" />
-      <entry key="M10" value="3.3920253758780072" />
-      <entry key="M15" value="4.130118726763926" />
-      <entry key="M30" value="5.261808104412308" />
-      <entry key="H1" value="6.037845253884021" />
-      <entry key="H2" value="6.493067497172959" />
-      <entry key="H4" value="6.739714289947651" />
-      <entry key="D1" value="6.9556400996280345" />
-      <entry key="W1" value="6.99363847109994" />
+      <entry key="MS100" value="0.9430677459144696" />
+      <entry key="MS500" value="1.3117887522961857" />
+      <entry key="S2" value="1.9271830398952854" />
+      <entry key="S5" value="3.0493048592873078" />
+      <entry key="S10" value="5.464601487811837" />
+      <entry key="S30" value="11.836318504465353" />
+      <entry key="S60" value="15.483129705046343" />
+      <entry key="M2" value="17.95504399140304" />
+      <entry key="M5" value="20.049030559383315" />
+      <entry key="M10" value="21.650039480425352" />
+      <entry key="M15" value="22.602911383850504" />
+      <entry key="M30" value="23.973858192445647" />
+      <entry key="H1" value="24.885612853265904" />
+      <entry key="H2" value="25.414538106563896" />
+      <entry key="H4" value="25.699796761292454" />
+      <entry key="D1" value="25.948891995268287" />
+      <entry key="W1" value="25.99267206416716" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -99,6 +118,8 @@
     "Spring Boot.ToyStoreApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "git.auto.fetch.suggestion.counter": "1",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -146,5 +167,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update the .idea folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update the .idea folder" />
   </component>
 </project>
