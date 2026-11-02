@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// COMPONENT 03: Order Management | Owner: Placeholder
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
@@ -26,7 +26,7 @@ public class OrderController {
     private final SessionUtil sessionUtil;
 
     @Autowired
-    public OrderController(OrderService orderService, ToyService toyService, SessionUtil sessionUtil) {
+    public OrderController(OrderService orderService,ToyService toyService, SessionUtil sessionUtil) {
         this.orderService = orderService;
         this.toyService = toyService;
         this.sessionUtil = sessionUtil;
