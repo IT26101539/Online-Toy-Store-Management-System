@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-// COMPONENT 03: Order Management | Owner: Placeholder
+
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
