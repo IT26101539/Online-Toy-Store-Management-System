@@ -44,3 +44,22 @@ public abstract class User {
     public void setUsername(String username) {
         this.username = username;
     }
+    // Returns the hashed password
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    // Updates the hashed password
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    // Returns the user email
+    public String getEmail() {
+        return email;
+    }
+
+    // Updates the user email
+    public void setEmail(String email) {
+        this.email = email;
+    }
