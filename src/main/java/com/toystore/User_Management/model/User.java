@@ -25,3 +25,22 @@ public abstract class User {
         this.email = email;                                               // Set email
         this.imageFilename = imageFilename != null ? imageFilename : ""; // Set image filename (prevents null values)
     }
+    // Returns the user ID
+    public String getId() {
+        return id;
+    }
+
+    // Updates the user ID
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    // Returns the username
+    public String getUsername() {
+        return username;
+    }
+
+    // Updates the username
+    public void setUsername(String username) {
+        this.username = username;
+    }
