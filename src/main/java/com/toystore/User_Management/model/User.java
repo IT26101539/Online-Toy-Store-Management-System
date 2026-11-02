@@ -63,3 +63,21 @@ public abstract class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    // Returns the image filename
+    public String getImageFilename() {
+        return imageFilename;
+    }
+
+    // Updates image filename safely, avoiding null values
+    public void setImageFilename(String imageFilename) {
+        this.imageFilename = imageFilename != null ? imageFilename : "";
+    }
+
+    // Generates the proper web URL path for the user's profile image
+    public String getImageUrl() {
+        // Check if a valid image filename exists
+        if (imageFilename != null && !imageFilename.trim().isEmpty()) {
+            return "/uploads/users/" + imageFilename; // Path to uploaded image
+        }
+        return "/images/placeholder-user.svg";        // Fallback default placeholder image
+    }
