@@ -1,13 +1,27 @@
 package com.toystore.User_Management.model;
 
 // COMPONENT 01: User Management | Owner: IT26101544
-// Abstract base class representing a general User in the system
+// Abstract base class representing a general User in the application
 public abstract class User {
 
-    // Private fields for data encapsulation (protecting user details)
-    private String id;             // Unique user identification number
-    private String username;       // User's login username
-    private String passwordHash;   // Secure hashed password string
-    private String email;          // User's contact email address
-    private String imageFilename;  // Profile picture filename
-}
+    // Private attributes to protect sensitive user data (Encapsulation)
+    private String id;             // Unique identifier for the user
+    private String username;       // User's login name
+    private String passwordHash;   // Hashed version of the password for security
+    private String email;          // User's email address
+    private String imageFilename;  // Profile picture file name
+
+    // Overloaded constructor for users without a profile picture
+    public User(String id, String username, String passwordHash, String email) {
+        // Calls the main constructor passing an empty string for the image
+        this(id, username, passwordHash, email, "");
+    }
+
+    // Main constructor to initialize all user fields
+    public User(String id, String username, String passwordHash, String email, String imageFilename) {
+        this.id = id;                                                     // Set user ID
+        this.username = username;                                         // Set username
+        this.passwordHash = passwordHash;                                 // Set password hash
+        this.email = email;                                               // Set email
+        this.imageFilename = imageFilename != null ? imageFilename : ""; // Set image filename (prevents null values)
+    }
