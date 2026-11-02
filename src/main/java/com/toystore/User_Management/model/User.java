@@ -81,3 +81,12 @@ public abstract class User {
         }
         return "/images/placeholder-user.svg";        // Fallback default placeholder image
     }
+    // Abstract method: Must be implemented by subclasses (AdminUser / RegularUser)
+    public abstract String getRole();
+
+    // Converts user object into a pipe-delimited string for text file storage
+    public String toFileString() {
+        // Format: ID | Username | PasswordHash | Email | Role | ImageFilename
+        return id + "|" + username + "|" + passwordHash + "|" + email + "|" + getRole() + "|" + (imageFilename != null ? imageFilename : "");
+    }
+}
