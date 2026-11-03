@@ -1,5 +1,7 @@
 package com.toystore.User_Management.service;
 
+import com.toystore.common.IdGenerator;
+import com.toystore.User_Management.model.RegularUser;
 import com.toystore.User_Management.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,33 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository =userRepository;
+    }
+
+    /**
+     * Handles registration for regular users:
+     * 1. Validates whether the username already exists.
+     * 2. Generates a custom unique ID.
+     * 3. Hashes the raw password for security.
+     * 4. Creates a new RegularUser instance and saves it to the database.
+     */
+    public void registerRegularUser(String username, String password, String email, String membershipType) throws Exception {
+
+        // Step 1: Check if the given username is already taken in the system
+        if (userRepository.findByUsername(username).isPresent()) {
+            throw new Exception("Username already exists");
+        }
+
+        // Step 2: Generate a custom unique user ID starting with the prefix "U"
+        String id = IdGenerator.generateId("U");
+
+        // Step 3: Hash the plain-text password using SHA-256 for secure storage
+        String hashedPassword = hashPassword(password);
+
+        // Step 4: Create a new RegularUser object with all provided user details
+        RegularUser user = new RegularUser(id, username, hashedPassword, email, membershipType);
+
+        // Step 5: Save the new user record into the database via the repository
+        userRepository.save(user);
     }
 
     /**
