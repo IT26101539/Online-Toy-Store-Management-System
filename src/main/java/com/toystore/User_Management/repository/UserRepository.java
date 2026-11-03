@@ -98,6 +98,17 @@ public class UserRepository {
         saveAll(users);
     }
 
+    // Deletes a user from the file using their user ID
+    public synchronized void delete(String id) {
+        // Filter out the user with matching ID and keep all other users
+        List<User> users = findAll().stream()
+                .filter(u -> !u.getId().equals(id))
+                .collect(Collectors.toList());
+
+        // Save the remaining user list back to the file
+        saveAll(users);
+    }
+
     // Helper method to overwrite the entire "users.txt" file with the given list of users
     private void saveAll(List<User> users) {
         // Convert all User objects to file text lines
