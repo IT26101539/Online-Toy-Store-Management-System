@@ -26,7 +26,7 @@ public class UserRepository {
 
     /**
      * File Handler Dependency:
-     * Manages low-level text file reading, writing, and line-appending operations for "users.txt".
+     * Manages low-level text file reading,writing and line-appending operations for "users.txt".
      */
     private final FileHandler fileHandler;
 
@@ -52,7 +52,7 @@ public class UserRepository {
 
     /**
      * Retrieval Operation (Thread-Safe):
-     * Reads all raw text lines from "users.txt", parses each pipe-delimited entry,
+     * Reads all raw text lines from "users.txt",parses each pipe-delimited entry,
      * and reconstructs them back into appropriate concrete Java User objects.
      *
      * @return List containing all parsed User objects found in the storage file
@@ -68,18 +68,18 @@ public class UserRepository {
             // Split line records into individual attributes using the pipe delimiter ("|")
             String[] parts = line.split("\\|");
 
-            // Validate that the record contains at least the minimum required fields (ID, username, password, email, role/membership)
+            // Validate that the record contains at least the minimum required fields (ID,username,password,email,role)
             if (parts.length >= 5) {
                 // Safely extract optional image filename at index 5 if present; otherwise default to an empty string
                 String imageFilename = (parts.length >= 6) ? parts[5] : "";
 
                 // Polymorphic instantiation check: if role identifier is "ADMIN", instantiate an AdminUser
                 if ("ADMIN".equals(parts[4])) {
-                    users.add(new AdminUser(parts[0], parts[1], parts[2], parts[3], imageFilename));
+                    users.add(new AdminUser(parts[0],parts[1],parts[2],parts[3],imageFilename));
                 }
                 // Otherwise, instantiate a RegularUser passing membership classification and profile picture
                 else {
-                    users.add(new RegularUser(parts[0], parts[1], parts[2], parts[3], parts[4], imageFilename));
+                    users.add(new RegularUser(parts[0],parts[1],parts[2],parts[3],parts[4],imageFilename));
                 }
             }
         }
@@ -93,10 +93,10 @@ public class UserRepository {
      * Searches the user repository for an account matching the specified username string.
      *
      * @param username The system username to search for
-     * @return Optional containing the matched User object if found, or empty otherwise
+     * @return Optional containing the matched User object if found or empty otherwise
      */
     public Optional<User> findByUsername(String username) {
-        // Stream all users, filter by matching username property, and return the first match
+        // Stream all users,filter by matching username property and return the first match
         return findAll().stream()
                 .filter(u -> u.getUsername().equals(username))
                 .findFirst();
@@ -110,7 +110,7 @@ public class UserRepository {
      * @return Optional containing the matched User object if found, or empty otherwise
      */
     public Optional<User> findById(String id) {
-        // Stream all users, filter by matching ID property, and return the first match
+        // Stream all users,filter by matching ID property and return the first match
         return findAll().stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst();
@@ -119,7 +119,7 @@ public class UserRepository {
     /**
      * Update Operation (Thread-Safe):
      * Modifies an existing user's stored information by locating their record via ID,
-     * replacing it with the updated object, and rewriting the persistent file.
+     * replacing it with the updated object and rewriting the persistent file.
      *
      * @param updatedUser The User object containing modified attributes
      */
