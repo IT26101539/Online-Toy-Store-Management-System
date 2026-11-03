@@ -2,6 +2,9 @@ package com.toystore.User_Management.repository;
 
 // Importing common file handling utility
 import com.toystore.common.FileHandler;
+// Importing model classes for users
+import com.toystore.User_Management.model.AdminUser;
+import com.toystore.User_Management.model.RegularUser;
 import com.toystore.User_Management.model.User;
 // Importing Spring annotation to mark this as a repository
 import org.springframework.stereotype.Repository;
@@ -45,6 +48,15 @@ public class UserRepository {
             if (parts.length >= 5) {
                 // Check if the image filename exists (index 5); if not, set it as empty string
                 String imageFilename = (parts.length >= 6) ? parts[5] : "";
+
+                // If role is ADMIN, create an AdminUser object
+                if ("ADMIN".equals(parts[4])) {
+                    users.add(new AdminUser(parts[0], parts[1], parts[2], parts[3], imageFilename));
+                }
+                // Otherwise, create a RegularUser object
+                else {
+                    users.add(new RegularUser(parts[0], parts[1], parts[2], parts[3], parts[4], imageFilename));
+                }
             }
         }
 
