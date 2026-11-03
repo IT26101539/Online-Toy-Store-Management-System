@@ -99,6 +99,15 @@ public class UserService {
     }
 
     /**
+     * Directly updates user details in the repository layer.
+     * @param user User object containing updated fields.
+     */
+    public void updateUser(User user) {
+        userRepository.update(user);
+    }
+
+
+    /**
      * Private helper method to securely convert raw text passwords into SHA-256 hash format.
      * Encodes the resulting byte array as a Base64 string.
      *
