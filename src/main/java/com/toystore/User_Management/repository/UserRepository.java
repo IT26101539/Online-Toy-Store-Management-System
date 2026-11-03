@@ -94,6 +94,8 @@ public class UserRepository {
                 break; // Stop loop once user is found and updated
             }
         }
+        // Save the updated list back to the file
+        saveAll(users);
     }
 
     // Helper method to overwrite the entire "users.txt" file with the given list of users
