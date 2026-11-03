@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 // COMPONENT 01: User Management | Owner: IT26101544
 // Annotation telling Spring Boot that this class handles database/file storage operations
@@ -79,5 +80,13 @@ public class UserRepository {
         return findAll().stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst();
+    }
+
+    // Helper method to overwrite the entire "users.txt" file with the given list of users
+    private void saveAll(List<User> users) {
+        // Convert all User objects to file text lines
+        List<String> lines = users.stream().map(User::toFileString).collect(Collectors.toList());
+        // Write all text lines back into the file
+        fileHandler.writeAllLines(lines);
     }
 }
