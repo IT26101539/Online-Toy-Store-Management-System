@@ -82,6 +82,20 @@ public class UserRepository {
                 .findFirst();
     }
 
+    // Updates an existing user's information in the text file
+    public synchronized void update(User updatedUser) {
+        // Fetch all existing users from the file
+        List<User> users = findAll();
+
+        // Find the matching user by ID and replace it with updated user data
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().equals(updatedUser.getId())) {
+                users.set(i, updatedUser);
+                break; // Stop loop once user is found and updated
+            }
+        }
+    }
+
     // Helper method to overwrite the entire "users.txt" file with the given list of users
     private void saveAll(List<User> users) {
         // Convert all User objects to file text lines
