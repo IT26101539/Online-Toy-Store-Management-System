@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 // Importing Java collection utilities
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // COMPONENT 01: User Management | Owner: IT26101544
 // Annotation telling Spring Boot that this class handles database/file storage operations
@@ -62,5 +63,13 @@ public class UserRepository {
 
         // Return the full list of parsed user objects
         return users;
+    }
+
+    // Searches for a user matching the given username
+    public Optional<User> findByUsername(String username) {
+        // Get all users, filter by username, and return the first matching user if found
+        return findAll().stream()
+                .filter(u -> u.getUsername().equals(username))
+                .findFirst();
     }
 }
