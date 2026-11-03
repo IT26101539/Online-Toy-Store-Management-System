@@ -72,4 +72,12 @@ public class UserRepository {
                 .filter(u -> u.getUsername().equals(username))
                 .findFirst();
     }
+
+    // Searches for a user matching the given user ID
+    public Optional<User> findById(String id) {
+        // Get all users, filter by ID, and return the first matching user if found
+        return findAll().stream()
+                .filter(u -> u.getId().equals(id))
+                .findFirst();
+    }
 }
