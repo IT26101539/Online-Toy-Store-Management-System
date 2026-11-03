@@ -4,14 +4,14 @@ package com.toystore.User_Management.model;
  * COMPONENT 01: User Management Subsystem
  * Module Owner: IT26101544
  * Description: Model class representing a Regular customer/user in the Online Toy Store.
- * Demonstrates Object-Oriented Concepts: Inheritance, Encapsulation, and Polymorphism.
+ * Demonstrates Object-Oriented Concepts: Inheritance,Encapsulationnand Polymorphism.
  */
 public class RegularUser extends User {
 
     /**
      * Instance Field:
      * Encapsulated private field storing the specific membership classification
-     * for regular store customers (e.g., "REGULAR", "PREMIUM").
+     * for regular store customers (e.g.,"REGULAR","PREMIUM").
      */
     private String membershipType;
 
@@ -24,7 +24,7 @@ public class RegularUser extends User {
      * @param username       System login handle/username
      * @param passwordHash   Encrypted password hash string
      * @param email          Primary email address of the customer
-     * @param membershipType Customer tier tier status (e.g., REGULAR, PREMIUM)
+     * @param membershipType Customer tier tier status (e.g.,REGULAR,PREMIUM)
      */
     public RegularUser(String id,String username,String passwordHash,String email,String membershipType) {
         // Delegate parent attribute initialization to the superclass (User) constructor
@@ -42,7 +42,7 @@ public class RegularUser extends User {
      * @param username       System login handle/username
      * @param passwordHash   Encrypted password hash string
      * @param email          Primary email address of the customer
-     * @param membershipType Customer tier status (e.g., REGULAR, PREMIUM)
+     * @param membershipType Customer tier status (e.g.,REGULAR,PREMIUM)
      * @param imageFilename  Path or file identifier for the avatar image
      */
     public RegularUser(String id,String username,String passwordHash,String email,String membershipType,String imageFilename) {
@@ -56,7 +56,7 @@ public class RegularUser extends User {
      * Getter Method:
      * Encapsulation accessor method to retrieve the current membership status of the user.
      *
-     * @return String representing the membership tier (e.g., "REGULAR", "PREMIUM")
+     * @return String representing the membership tier (e.g.,"REGULAR","PREMIUM")
      */
     public String getMembershipType() {
         return membershipType;
@@ -77,7 +77,7 @@ public class RegularUser extends User {
      * Overrides the base getRole() method inherited from the parent User class.
      * Dynamically returns the assigned membership status to dictate user privilege levels.
      *
-     * @return String matching the membershipType property (e.g., "REGULAR", "PREMIUM")
+     * @return String matching the membershipType property (e.g.,"REGULAR","PREMIUM")
      */
     @Override
     public String getRole() {

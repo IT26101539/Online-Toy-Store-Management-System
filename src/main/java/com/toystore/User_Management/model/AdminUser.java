@@ -1,9 +1,9 @@
 package com.toystore.User_Management.model;
 
 /**
- * COMPONENT 01: User Management Subsystem
- * Module Owner: IT26101544
- * Description: Model class representing an Administrator user in the Online Toy Store system.
+ * COMPONENT 01:User Management Subsystem
+ * Module Owner:IT26101544
+ * Description:Model class representing an Administrator user in the Online Toy Store system.
  */
 public class AdminUser extends User {
 

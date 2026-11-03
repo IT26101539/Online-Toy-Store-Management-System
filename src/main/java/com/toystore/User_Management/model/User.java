@@ -1,10 +1,10 @@
 package com.toystore.User_Management.model;
 
 /**
- * COMPONENT 01: User Management Subsystem
- * Module Owner: IT26101544
- * Description: Abstract base model class representing a generic user in the Online Toy Store system.
- * Implements core Object-Oriented Principles: Abstraction, Encapsulation, and Code Reusability.
+ * COMPONENT 01:User Management Subsystem
+ * Module Owner:IT26101544
+ * Description:Abstract base model class representing a generic user in the Online Toy Store system.
+ * Implements core Object-Oriented Principles: Abstraction,Encapsulation and Code Reusability.
  */
 public abstract class User {
 
@@ -30,7 +30,7 @@ public abstract class User {
      * @param email        Contact email address
      */
     public User(String id,String username,String passwordHash,String email) {
-        // Chain constructor call, passing an empty string as a default fallback for imageFilename
+        // Chain constructor call,passing an empty string as a default fallback for imageFilename
         this(id,username,passwordHash,email, "");
     }
 
@@ -50,12 +50,12 @@ public abstract class User {
         this.username =username;                                         // Assign login username
         this.passwordHash =passwordHash;                                 // Assign password hash
         this.email =email;                                               // Assign email address
-        // Conditional assignment: if input image filename is null, default to an empty string
+        // Conditional assignment:if input image filename is null,default to an empty string
         this.imageFilename =imageFilename != null ? imageFilename : "";
     }
 
     /**
-     * Getter Method: Retrieves the unique user identification string.
+     * Getter Method:Retrieves the unique user identification string.
      * @return String representing the user ID
      */
     public String getId() {
@@ -63,7 +63,7 @@ public abstract class User {
     }
 
     /**
-     * Setter Method: Updates or modifies the unique user identification string.
+     * Setter Method:Updates or modifies the unique user identification string.
      * @param id New unique user ID to set
      */
     public void setId(String id) {
@@ -71,7 +71,7 @@ public abstract class User {
     }
 
     /**
-     * Getter Method: Retrieves the system login username.
+     * Getter Method:Retrieves the system login username.
      * @return String representing the username
      */
     public String getUsername() {
@@ -79,7 +79,7 @@ public abstract class User {
     }
 
     /**
-     * Setter Method: Updates or modifies the system login username.
+     * Setter Method:Updates or modifies the system login username.
      * @param username New username to set
      */
     public void setUsername(String username) {
@@ -87,7 +87,7 @@ public abstract class User {
     }
 
     /**
-     * Getter Method: Retrieves the encrypted password hash.
+     * Getter Method:Retrieves the encrypted password hash.
      * @return String representing the secure password hash
      */
     public String getPasswordHash() {
@@ -95,7 +95,7 @@ public abstract class User {
     }
 
     /**
-     * Setter Method: Updates or modifies the encrypted password hash.
+     * Setter Method:Updates or modifies the encrypted password hash.
      * @param passwordHash New secure password hash string to set
      */
     public void setPasswordHash(String passwordHash) {
@@ -103,7 +103,7 @@ public abstract class User {
     }
 
     /**
-     * Getter Method: Retrieves the user's primary email address.
+     * Getter Method:Retrieves the user's primary email address.
      * @return String representing the email address
      */
     public String getEmail() {
@@ -111,7 +111,7 @@ public abstract class User {
     }
 
     /**
-     * Setter Method: Updates or modifies the user's primary email address.
+     * Setter Method:Updates or modifies the user's primary email address.
      * @param email New email address to set
      */
     public void setEmail(String email) {
@@ -119,7 +119,7 @@ public abstract class User {
     }
 
     /**
-     * Getter Method: Retrieves the filename of the user's profile picture.
+     * Getter Method:Retrieves the filename of the user's profile picture.
      * @return String representing the image filename
      */
     public String getImageFilename() {
@@ -136,8 +136,8 @@ public abstract class User {
 
     /**
      * Dynamic Web Resource URL Generator:
-     * Evaluates whether a valid profile picture filename exists. If available, constructs
-     * the full server path for uploads; otherwise, falls back to a default SVG placeholder graphic.
+     * Evaluates whether a valid profile picture filename exists.If available,constructs
+     * the full server path for uploads;otherwise,falls back to a default SVG placeholder graphic.
      *
      * @return String containing the web-accessible image path or default placeholder URL
      */
@@ -151,7 +151,7 @@ public abstract class User {
 
     /**
      * Abstract Polymorphic Method:
-     * Declares a contract that must be fulfilled by all concrete subclasses (e.g., AdminUser, RegularUser)
+     * Declares a contract that must be fulfilled by all concrete subclasses (e.g., AdminUser,RegularUser)
      * to define their respective user role privileges.
      *
      * @return String representing the specific role classification of the user
