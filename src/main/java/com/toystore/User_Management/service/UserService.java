@@ -129,6 +129,21 @@ public class UserService {
             if (user instanceof RegularUser && membershipType != null) {
                 ((RegularUser) user).setMembershipType(membershipType);
             }
+
+            // Check if a valid,non-empty image file was uploaded
+            if (imageFile != null && !imageFile.isEmpty()) {
+
+                // Remove the existing image from local storage if one exists
+                if (user.getImageFilename() != null && !user.getImageFilename().isEmpty()) {
+                    com.toystore.common.ImageStorageUtil.deleteImage("users",user.getImageFilename());
+                }
+
+                // Save the new image file to the storage and get its new filename
+                String newFilename =com.toystore.common.ImageStorageUtil.saveImage("users",user.getId(),imageFile);
+
+                // Attach the new image filename to the user profile
+                user.setImageFilename(newFilename);
+            }
             // Save all updated user information back to the repository
             updateUser(user);
         }
