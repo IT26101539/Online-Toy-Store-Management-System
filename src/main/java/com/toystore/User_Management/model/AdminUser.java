@@ -13,5 +13,10 @@ public class AdminUser extends User {
     public AdminUser(String id, String username, String passwordHash, String email, String imageFilename) {
         super(id, username, passwordHash, email, imageFilename); // Calls base constructor with image parameter
     }
+    // Annotation indicating this method overrides a method in the parent class
+    @Override
+    public String getRole() { // Polymorphic method to get the user's role
+        return "ADMIN"; // Returns fixed string identifying this user as an Admin
+    }
 
 }
