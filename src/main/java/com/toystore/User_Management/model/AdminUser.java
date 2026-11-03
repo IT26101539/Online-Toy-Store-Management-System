@@ -9,5 +9,9 @@ public class AdminUser extends User {
     public AdminUser(String id, String username, String passwordHash, String email) {
         super(id, username, passwordHash, email); // Calls the base User class constructor
     }
+    // Overloaded constructor to create an AdminUser with a profile image
+    public AdminUser(String id, String username, String passwordHash, String email, String imageFilename) {
+        super(id, username, passwordHash, email, imageFilename); // Calls base constructor with image parameter
+    }
 
 }
