@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 // COMPONENT 01:User Management | Owner:IT26101544
@@ -78,6 +79,14 @@ public class UserService {
 
         // Throw exception if the username does not exist or the password does not match
         throw new Exception("Invalid username or password");
+    }
+
+    /**
+     * Retrieves all registered users from the repository.
+     * @return List of all users in the system.
+     */
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     /**
