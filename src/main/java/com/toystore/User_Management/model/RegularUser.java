@@ -13,6 +13,11 @@ public class RegularUser extends User {
         super(id, username, passwordHash, email); // Calls parent User class constructor
         this.membershipType = membershipType;   // Assigns membership type to instance variable
     }
+    // Overloaded constructor that also includes profile image filename
+    public RegularUser(String id, String username, String passwordHash, String email, String membershipType, String imageFilename) {
+        super(id, username, passwordHash, email, imageFilename); // Calls parent constructor with image parameter
+        this.membershipType = membershipType;                  // Assigns membership type
+    }
 
 
 }
