@@ -36,6 +36,17 @@ public class UserRepository {
         // Create an empty list to store user objects
         List<User> users = new ArrayList<>();
 
+        // Loop through each line in the file
+        for (String line : lines) {
+            // Split the line into fields using '|' as the separator
+            String[] parts = line.split("\\|");
+
+            // Ensure the line has at least 5 required fields before processing
+            if (parts.length >= 5) {
+                // Parsing logic goes here
+            }
+        }
+
         // Return the full list of parsed user objects
         return users;
     }
