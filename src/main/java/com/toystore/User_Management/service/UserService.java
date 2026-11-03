@@ -150,6 +150,30 @@ public class UserService {
     }
 
     /**
+     * Deletes a user record and cleans up associated file assets:
+     * 1. Check if the user exists.
+     * 2. Delete the user's profile image file if present.
+     * 3. Delete the user record from the database.
+     */
+    public void deleteUser(String id) {
+
+        // Fetch the user object by ID
+        User user = getUserById(id);
+
+        // Proceed only if the target user is found
+        if (user != null) {
+
+            // If the user has a profile picture saved,delete the file from storage
+            if (user.getImageFilename() != null && !user.getImageFilename().isEmpty()) {
+                com.toystore.common.ImageStorageUtil.deleteImage("users",user.getImageFilename());
+            }
+
+            // Remove the user entry from the database
+            userRepository.delete(id);
+        }
+    }
+
+    /**
      * Private helper method to securely convert raw text passwords into SHA-256 hash format.
      * Encodes the resulting byte array as a Base64 string.
      *
