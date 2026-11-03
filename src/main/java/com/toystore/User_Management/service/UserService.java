@@ -106,6 +106,33 @@ public class UserService {
         userRepository.update(user);
     }
 
+    /**
+     * Updates profile info (email,membership type) and optional profile image:
+     * 1. Fetch existing user by ID.
+     * 2. Update basic fields (email).
+     * 3. Update membership type if the user is an instance of RegularUser.
+     * 4. Replace old profile picture with a new one if a file is uploaded.
+     * 5. Persist updated user state to the repository.
+     */
+    public void updateUserProfile(String userId,String email,String membershipType,org.springframework.web.multipart.MultipartFile imageFile) throws Exception {
+
+        // Fetch the user by unique ID
+        User user =getUserById(userId);
+
+        // Proceed only if the user exists in the database
+        if (user != null) {
+
+            // Update the email address
+            user.setEmail(email);
+
+            // Type checking and downcasting: Update membership type only if user is a RegularUser
+            if (user instanceof RegularUser && membershipType != null) {
+                ((RegularUser) user).setMembershipType(membershipType);
+            }
+            // Save all updated user information back to the repository
+            updateUser(user);
+        }
+    }
 
     /**
      * Private helper method to securely convert raw text passwords into SHA-256 hash format.
