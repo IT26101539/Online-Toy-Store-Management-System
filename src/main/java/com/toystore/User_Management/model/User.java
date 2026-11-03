@@ -1,6 +1,7 @@
 package com.toystore.User_Management.model;
 
 // COMPONENT 01: User Management | Owner: IT26101544
+
 // Abstract base class representing a general User in the application
 public abstract class User {
 
@@ -25,6 +26,7 @@ public abstract class User {
         this.email = email;                                               // Set email
         this.imageFilename = imageFilename != null ? imageFilename : ""; // Set image filename (prevents null values)
     }
+
     // Returns the user ID
     public String getId() {
         return id;
@@ -44,6 +46,7 @@ public abstract class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
     // Returns the hashed password
     public String getPasswordHash() {
         return passwordHash;
@@ -63,6 +66,7 @@ public abstract class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
     // Returns the image filename
     public String getImageFilename() {
         return imageFilename;
@@ -75,17 +79,20 @@ public abstract class User {
 
     // Generates the proper web URL path for the user's profile image
     public String getImageUrl() {
+
         // Check if a valid image filename exists
         if (imageFilename != null && !imageFilename.trim().isEmpty()) {
             return "/uploads/users/" + imageFilename; // Path to uploaded image
         }
-        return "/images/placeholder-user.svg";        // Fallback default placeholder image
+        return "/images/placeholder-user.svg"; // Fallback default placeholder image
     }
+
     // Abstract method: Must be implemented by subclasses (AdminUser / RegularUser)
     public abstract String getRole();
 
     // Converts user object into a pipe-delimited string for text file storage
     public String toFileString() {
+
         // Format: ID | Username | PasswordHash | Email | Role | ImageFilename
         return id + "|" + username + "|" + passwordHash + "|" + email + "|" + getRole() + "|" + (imageFilename != null ? imageFilename : "");
     }
