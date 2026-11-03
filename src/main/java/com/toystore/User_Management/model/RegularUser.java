@@ -27,6 +27,9 @@ public class RegularUser extends User {
     public void setMembershipType(String membershipType) {
         this.membershipType = membershipType; // Sets new value for membershipType
     }
-
-
+    // Overrides the getRole method from User class (Polymorphism concept)
+    @Override
+    public String getRole() {
+        return membershipType; // Returns specific membership type as the user role (e.g., REGULAR, PREMIUM)
+    }
 }
