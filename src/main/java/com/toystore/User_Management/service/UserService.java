@@ -90,6 +90,15 @@ public class UserService {
     }
 
     /**
+     * Finds a single user by their unique ID.
+     * @param id User ID to search for.
+     * @return User object if found, or null if no user matches the ID.
+     */
+    public User getUserById(String id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    /**
      * Private helper method to securely convert raw text passwords into SHA-256 hash format.
      * Encodes the resulting byte array as a Base64 string.
      *
