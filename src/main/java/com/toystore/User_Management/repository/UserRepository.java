@@ -2,6 +2,7 @@ package com.toystore.User_Management.repository;
 
 // Importing common file handling utility
 import com.toystore.common.FileHandler;
+import com.toystore.User_Management.model.User;
 // Importing Spring annotation to mark this as a repository
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,11 @@ public class UserRepository {
     // Constructor to initialize the FileHandler with "users.txt" file
     public UserRepository() {
         this.fileHandler = new FileHandler("users.txt");
+    }
+
+    // Saves a single user to the file (synchronized prevents concurrent writing issues)
+    public synchronized void save(User user) {
+        // Converts user object to text format and appends it as a new line in the file
+        fileHandler.appendLine(user.toFileString());
     }
 }
