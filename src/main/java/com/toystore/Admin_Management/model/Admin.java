@@ -16,9 +16,9 @@ public class Admin extends User {
     private String permissions; // exsample - "ALL", "READ_ONLY"
 
     // Constructor - creates a new Admin object
-    public Admin(String id, String username, String passwordHash, String email, String permissions) {
+    public Admin(String id,String username,String passwordHash,String email,String permissions) {
         // super(...) calls the parent (User) constructor to set the inherited fields
-        super(id, username, passwordHash, email);
+        super(id,username,passwordHash,email);
         // Set the field that belongs only to Admin
         this.permissions = permissions;
     }
@@ -45,6 +45,6 @@ public class Admin extends User {
 
     @Override
     public String toFileString() {
-        return getId() + "|" + getUsername() + "|" + getPasswordHash() + "|" + getEmail() + "|" + getRole() + "|" + permissions;
+        return getId()+"|"+getUsername()+"|"+getPasswordHash()+"|"+getEmail()+"|"+getRole()+"|"+permissions;
     }
 }
