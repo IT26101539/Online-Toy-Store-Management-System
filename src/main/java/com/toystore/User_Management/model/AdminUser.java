@@ -6,12 +6,12 @@ package com.toystore.User_Management.model;
 public class AdminUser extends User {
 
     // Main constructor to create an AdminUser with basic details
-    public AdminUser(String id, String username, String passwordHash, String email) {
-        super(id, username, passwordHash, email); // Calls the base User class constructor
+    public AdminUser(String id,String username,String passwordHash,String email) {
+        super(id,username,passwordHash,email); // Calls the base User class constructor
     }
     // Overloaded constructor to create an AdminUser with a profile image
-    public AdminUser(String id, String username, String passwordHash, String email, String imageFilename) {
-        super(id, username, passwordHash, email, imageFilename); // Calls base constructor with image parameter
+    public AdminUser(String id,String username,String passwordHash,String email,String imageFilename) {
+        super(id,username,passwordHash,email,imageFilename); // Calls base constructor with image parameter
     }
     // Annotation indicating this method overrides a method in the parent class
     @Override

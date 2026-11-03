@@ -13,13 +13,13 @@ public abstract class User {
     private String imageFilename;  // Profile picture file name
 
     // Overloaded constructor for users without a profile picture
-    public User(String id, String username, String passwordHash, String email) {
+    public User(String id,String username,String passwordHash,String email) {
         // Calls the main constructor passing an empty string for the image
-        this(id, username, passwordHash, email, "");
+        this(id,username,passwordHash,email, "");
     }
 
     // Main constructor to initialize all user fields
-    public User(String id, String username, String passwordHash, String email, String imageFilename) {
+    public User(String id,String username,String passwordHash,String email,String imageFilename) {
         this.id = id;                                                     // Set user ID
         this.username = username;                                         // Set username
         this.passwordHash = passwordHash;                                 // Set password hash
