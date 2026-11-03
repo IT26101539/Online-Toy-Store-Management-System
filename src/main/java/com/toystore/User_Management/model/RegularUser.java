@@ -18,6 +18,15 @@ public class RegularUser extends User {
         super(id, username, passwordHash, email, imageFilename); // Calls parent constructor with image parameter
         this.membershipType = membershipType;                  // Assigns membership type
     }
+    // Getter method to retrieve the membership type
+    public String getMembershipType() {
+        return membershipType; // Returns membershipType
+    }
+
+    // Setter method to update the membership type
+    public void setMembershipType(String membershipType) {
+        this.membershipType = membershipType; // Sets new value for membershipType
+    }
 
 
 }
