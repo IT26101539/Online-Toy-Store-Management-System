@@ -16,22 +16,22 @@ public class ActivityLog {
 // "this" refers to the current object's field
 
 
-    public ActivityLog(String adminId, String action, String timestamp) {
+    public ActivityLog(String adminId,String action,String timestamp) {
         this.adminId = adminId;
         this.action = action;
         this.timestamp = timestamp;
     }
     // Getters: allow other classes to read the private fields
 
-    public String getAdminId() { return adminId; }
-    public String getAction() { return action; }
-    public String getTimestamp() { return timestamp; }
+    public String getAdminId() {return adminId;}
+    public String getAction() {return action;}
+    public String getTimestamp() {return timestamp;}
 
 
     // Converts this log entry into one line of text for saving in admin_logs.txt
     // Parts are separated by "|", e.g. A123|Registered new admin: sam|2026-11-01T10:30
 
     public String toFileString() {
-        return adminId + "|" + action + "|" + timestamp;
+        return adminId+"|"+action+"|"+timestamp;
     }
 }

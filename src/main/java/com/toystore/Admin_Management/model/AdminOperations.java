@@ -12,10 +12,10 @@ public interface AdminOperations {
     // "throws Exception" warns that an error can occur,
     // for example when the username already exists.
 
-    void registerAdmin(String username, String password, String email, String permissions) throws Exception;
+    void registerAdmin(String username,String password,String email,String permissions) throws Exception;
 
     // Records an action performed by an admin in the activity log.
     // adminId = who did it, action = what was done.
 
-    void logAction(String adminId, String action);
+    void logAction(String adminId,String action);
 }
