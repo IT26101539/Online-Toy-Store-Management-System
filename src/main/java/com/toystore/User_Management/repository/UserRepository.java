@@ -43,7 +43,8 @@ public class UserRepository {
 
             // Ensure the line has at least 5 required fields before processing
             if (parts.length >= 5) {
-                // Parsing logic goes here
+                // Check if the image filename exists (index 5); if not, set it as empty string
+                String imageFilename = (parts.length >= 6) ? parts[5] : "";
             }
         }
 
