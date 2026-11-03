@@ -12,4 +12,9 @@ public class UserRepository {
 
     // File handler object to read and write user data
     private final FileHandler fileHandler;
+
+    // Constructor to initialize the FileHandler with "users.txt" file
+    public UserRepository() {
+        this.fileHandler = new FileHandler("users.txt");
+    }
 }
