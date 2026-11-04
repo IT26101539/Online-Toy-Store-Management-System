@@ -61,11 +61,31 @@
 
                         <!-- Password secret input box -->
                         <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+                    <!-- Submit button to trigger login -->
+                    <div class="d-grid mb-3">
+
+                        <!-- Full-width (d-grid) Submit Button with rocket icon -->
+                        <button type="submit" class="btn btn-primary btn-lg py-3 fs-5">
+                            <i class="fa-solid fa-rocket me-2"></i> Log In
+                        </button>
+                    </div>
+                    <!-- Link to the registration page for new users -->
+                    <div class="text-center mt-3">
+                        <p class="text-secondary fw-semibold mb-0">
+                            Don't have an account yet?
+                            <!-- Dynamic Thymeleaf link redirecting to '/users/register' -->
+                            <a th:href="@{/users/register}" class="fw-bold text-primary text-decoration-none">
+                                Create one free 🎉
+                            </a>
+                        </p>
+                    </div>
+                </form> <!-- End of Form -->
+            </div> <!-- End of Card Box -->
+        </div> <!-- End of Column -->
+    </div> <!-- End of Row -->
+</div> <!-- End of Layout Fragment -->
 </body>
 </html>
