@@ -1,8 +1,8 @@
 package com.toystore.Supplier_Management.model;
 
-// COMPONENT 05: Supplier / Brand Management | Owner: IT26101537
+// COMPONENT 05: Supplier/Brand Management | Owner:IT26101537
 // Encapsulation and Polymorphism
-public abstract class Supplier {
+public abstract class Supplier{
     // Supplier details are private (Encapsulation); other classes use getters and setters
     private String id;
     private String name;
@@ -13,51 +13,51 @@ public abstract class Supplier {
     private String imageFilename;
 
     // Creates a supplier with no logo by calling the main constructor
-    public Supplier(String id, String name, String contact, String brandsSupplied) {
-        this(id, name, contact, brandsSupplied, "");
+    public Supplier(String id,String name,String contact,String brandsSupplied) {
+        this(id,name,contact,brandsSupplied, "");
     }
 
     // Main constructor: sets every field and uses empty text when the image is null
-    public Supplier(String id, String name, String contact, String brandsSupplied, String imageFilename) {
+    public Supplier(String id,String name,String contact,String brandsSupplied,String imageFilename) {
         this.id = id;
         this.name = name;
-        this.contact = contact;
-        this.brandsSupplied = brandsSupplied;
-        this.imageFilename = imageFilename != null ? imageFilename : "";
+        this.contact =contact;
+        this.brandsSupplied =brandsSupplied;
+        this.imageFilename =imageFilename != null ? imageFilename: "";
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public String getId() {return id;}
+    public void setId(String id) {this.id = id;}
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {return name; }
+    public void setName(String name) {this.name = name; }
 
-    public String getContact() { return contact; }
-    public void setContact(String contact) { this.contact = contact; }
+    public String getContact(){ return contact;}
+    public void setContact(String contact) {this.contact =contact;}
 
-    public String getBrandsSupplied() { return brandsSupplied; }
-    public void setBrandsSupplied(String brandsSupplied) { this.brandsSupplied = brandsSupplied; }
+    public String getBrandsSupplied() {return brandsSupplied;}
+    public void setBrandsSupplied(String brandsSupplied) {this.brandsSupplied= brandsSupplied;}
 
-    public String getImageFilename() { return imageFilename; }
-    public void setImageFilename(String imageFilename) { this.imageFilename = imageFilename != null ? imageFilename : ""; }
+    public String getImageFilename() {return imageFilename;}
+    public void setImageFilename(String imageFilename) {this.imageFilename= imageFilename != null ? imageFilename : "";}
 
     // Returns the logo URL, or the placeholder image when no logo is uploaded
-    public String getImageUrl() {
+    public String getImageUrl(){
         if (imageFilename != null && !imageFilename.trim().isEmpty()) {
             return "/uploads/suppliers/" + imageFilename;
         }
         return "/images/placeholder-supplier.svg";
     }
 
-    // Polymorphism: each subclass gives its own delivery time and restock cost
+    //Polymorphism: each subclass gives its own delivery time and restock cost
     public abstract String getDeliveryTimeEstimate();
     public abstract double getRestockCost();
-    
+
     // Each subclass returns its own type (LOCAL or INTERNATIONAL)
     public abstract String getType();
 
     // Converts the supplier into one line for suppliers.txt (fields separated by |)
-    public String toFileString() {
-        return id + "|" + name + "|" + contact + "|" + brandsSupplied + "|" + getType() + "|" + (imageFilename != null ? imageFilename : "");
+    public String toFileString(){
+        return id + "|" + name + "|" + contact + "|" + brandsSupplied + "|" + getType() + "|" +(imageFilename != null? imageFilename : "");
     }
 }
