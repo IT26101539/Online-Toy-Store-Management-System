@@ -109,3 +109,16 @@ public class UserController {
         // Redirect user back to the public homepage
         return "redirect:/";
     }
+
+    // HTTP GET endpoint to fetch and display the profile page for the currently logged-in user
+    @GetMapping("/profile")
+    public String showProfile(HttpSession session,Model model) {
+        // Security check:redirect unauthenticated users to the login page
+        if (!sessionUtil.isLoggedIn(session)) return "redirect:/users/login";
+        // Retrieve user entity using the unique user ID stored in the session
+        User user =userService.getUserById(sessionUtil.getLoggedInUserId(session));
+        // Add user object to the model to populate the profile view form
+        model.addAttribute("user",user);
+        // Returns the path to the profile update Thymeleaf template
+        return "User_Management/profile-update";
+    }
