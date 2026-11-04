@@ -40,4 +40,11 @@ public abstract class Supplier {
 
     public String getImageFilename() { return imageFilename; }
     public void setImageFilename(String imageFilename) { this.imageFilename = imageFilename != null ? imageFilename : ""; }
+
+    public String getImageUrl() {
+        if (imageFilename != null && !imageFilename.trim().isEmpty()) {
+            return "/uploads/suppliers/" + imageFilename;
+        }
+        return "/images/placeholder-supplier.svg";
+    }
 }
