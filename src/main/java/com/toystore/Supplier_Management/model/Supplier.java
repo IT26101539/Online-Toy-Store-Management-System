@@ -56,6 +56,7 @@ public abstract class Supplier {
     // Each subclass returns its own type (LOCAL or INTERNATIONAL)
     public abstract String getType();
 
+    // Converts the supplier into one line for suppliers.txt (fields separated by |)
     public String toFileString() {
         return id + "|" + name + "|" + contact + "|" + brandsSupplied + "|" + getType() + "|" + (imageFilename != null ? imageFilename : "");
     }
