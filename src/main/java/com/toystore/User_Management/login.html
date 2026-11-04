@@ -14,33 +14,58 @@
     <title>Login - ToysLanka</title>
 </head>
 <body>
-     <!-- Main content fragment that injects into the common layout template -->
-     <div layout:fragment="content">
+<!-- Main content fragment that injects into the common layout template -->
+<div layout:fragment="content">
 
-         <!-- Outer container row centered horizontally with vertical padding (py-4) -->
-         <div class="row justify-content-center py-4">
+    <!-- Outer container row centered horizontally with vertical padding (py-4) -->
+    <div class="row justify-content-center py-4">
 
-             <!-- Defines responsive grid column width (medium:6 cols,large:5 cols) -->
-             <div class="col-md-6 col-lg-5">
+        <!-- Defines responsive grid column width (medium:6 cols,large:5 cols) -->
+        <div class="col-md-6 col-lg-5">
 
-                 <!-- Main Login Card Box with border styling,padding and subtle shadow -->
-                 <div class="card p-4 p-md-5 shadow-sm border-0" style="border: 3px solid #FFE29A !important;">
+            <!-- Main Login Card Box with border styling,padding and subtle shadow -->
+            <div class="card p-4 p-md-5 shadow-sm border-0" style="border: 3px solid #FFE29A !important;">
 
-                     <!-- Header Section:Shows welcome emojis,title and sub-heading -->
-                     <div class="text-center mb-4">
+                <!-- Header Section:Shows welcome emojis,title and sub-heading -->
+                <div class="text-center mb-4">
 
-                         <!-- Emojis displayed in large font size -->
-                         <div class="fs-1 mb-2">🧸🎈</div>
+                    <!-- Emojis displayed in large font size -->
+                    <div class="fs-1 mb-2">🧸🎈</div>
 
-                         <!-- Main heading text -->
-                         <h2 class="fw-bold text-dark">Welcome Back!</h2>
+                    <!-- Main heading text -->
+                    <h2 class="fw-bold text-dark">Welcome Back!</h2>
 
-                         <!-- Sub-heading text for user guidance -->
-                         <p class="text-secondary fw-semibold">Login to your ToysLanka account</p>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
+                    <!-- Sub-heading text for user guidance -->
+                    <p class="text-secondary fw-semibold">Login to your ToysLanka account</p>
+                </div>
+
+                <!-- Login Form:Submits data via POST method to '/users/login' endpoint -->
+                <form th:action="@{/users/login}" method="post">
+
+                    <!-- Username Input Field Block -->
+                    <div class="mb-3">
+
+                        <!-- Field Label with FontAwesome user icon -->
+                        <label for="username" class="form-label fw-bold"><i class="fa-solid fa-user me-1 text-primary"></i> Username</label>
+
+                        <!-- Username text input input box -->
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+
+                    </div>
+
+                    <!-- Password Input Field Block -->
+                    <div class="mb-4">
+
+                        <!-- Field Label with FontAwesome lock icon -->
+                        <label for="password" class="form-label fw-bold"><i class="fa-solid fa-lock me-1 text-primary"></i> Password</label>
+
+                        <!-- Password secret input box -->
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
