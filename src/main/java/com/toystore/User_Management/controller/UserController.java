@@ -33,3 +33,10 @@ public class UserController {
         this.adminService =adminService;
         this.sessionUtil =sessionUtil;
     }
+
+    // HTTP GET endpoint to display the user registration view page
+    @GetMapping("/register")
+    public String showRegisterPage() {
+        // Returns the path to the Thymeleaf registration template
+        return "User_Management/register";
+    }
