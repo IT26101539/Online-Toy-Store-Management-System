@@ -98,3 +98,14 @@ public class UserController {
             }
         }
     }
+
+    // HTTP GET endpoint to clear active session data and log out the user
+    @GetMapping("/logout")
+    public String logoutUser(HttpSession session,RedirectAttributes redirectAttributes) {
+        // Clear all attributes associated with the current user session
+        sessionUtil.logoutUser(session);
+        // Add a success message indicating successful logout
+        redirectAttributes.addFlashAttribute("Success Message", "Logged out successfully.");
+        // Redirect user back to the public homepage
+        return "redirect:/";
+    }
