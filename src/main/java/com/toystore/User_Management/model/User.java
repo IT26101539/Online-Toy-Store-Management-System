@@ -31,7 +31,7 @@ public abstract class User {
      */
     public User(String id,String username,String passwordHash,String email) {
         // Chain constructor call,passing an empty string as a default fallback for imageFilename
-        this(id,username,passwordHash,email, "");
+        this(id,username,passwordHash,email,"");
     }
 
     /**
