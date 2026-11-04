@@ -16,4 +16,12 @@ public abstract class Supplier {
     public Supplier(String id, String name, String contact, String brandsSupplied) {
         this(id, name, contact, brandsSupplied, "");
     }
+
+    public Supplier(String id, String name, String contact, String brandsSupplied, String imageFilename) {
+        this.id = id;
+        this.name = name;
+        this.contact = contact;
+        this.brandsSupplied = brandsSupplied;
+        this.imageFilename = imageFilename != null ? imageFilename : "";
+    }
 }
