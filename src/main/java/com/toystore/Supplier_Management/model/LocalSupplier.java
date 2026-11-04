@@ -19,8 +19,14 @@ public class LocalSupplier extends Supplier {
         return "1-3 Business Days";
     }
 
+    // Polymorphism: local suppliers have a fixed low cost
     @Override
     public double getRestockCost() {
         return 5000.0; // Fixed flat rate for local
+    }
+
+    @Override
+    public String getType() {
+        return "LOCAL";
     }
 }
