@@ -11,4 +11,8 @@ public abstract class Supplier {
 
     // Name of the logo file; empty when no logo is uploaded
     private String imageFilename;
+
+    public Supplier(String id, String name, String contact, String brandsSupplied) {
+        this(id, name, contact, brandsSupplied, "");
+    }
 }
