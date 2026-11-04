@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- Standard HTML5 document type declaration -->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}">
+<!--
+  - xmlns:th -> Enables Thymeleaf attributes inside HTML tag.
+  - xmlns:layout -> Enables Thymeleaf Layout Dialect to reuse a common layout structure.
+  - layout:decorate -> Uses 'common/layout.html' template as the main wrapper page.
+-->
+
+<head>
+    <!-- Page title displayed in browser tab -->
+    <title>Login - ToysLanka</title>
+</head>
+<body>
+     <!-- Main content fragment that injects into the common layout template -->
+     <div layout:fragment="content">
+     </div>
+</body>
+</html>
