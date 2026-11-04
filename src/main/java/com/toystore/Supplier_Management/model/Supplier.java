@@ -49,6 +49,9 @@ public abstract class Supplier {
         return "/images/placeholder-supplier.svg";
     }
 
+    // Polymorphism: each subclass gives its own delivery time and restock cost
     public abstract String getDeliveryTimeEstimate();
     public abstract double getRestockCost();
+    
+    public abstract String getType();
 }
