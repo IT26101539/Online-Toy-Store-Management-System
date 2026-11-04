@@ -37,4 +37,7 @@ public abstract class Supplier {
 
     public String getBrandsSupplied() { return brandsSupplied; }
     public void setBrandsSupplied(String brandsSupplied) { this.brandsSupplied = brandsSupplied; }
+
+    public String getImageFilename() { return imageFilename; }
+    public void setImageFilename(String imageFilename) { this.imageFilename = imageFilename != null ? imageFilename : ""; }
 }
