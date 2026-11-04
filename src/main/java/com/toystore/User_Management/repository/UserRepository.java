@@ -15,105 +15,156 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-// COMPONENT 01: User Management | Owner: IT26101544
-// Annotation telling Spring Boot that this class handles database/file storage operations
+/**
+ * COMPONENT 01: User Management Subsystem
+ * Module Owner: IT26101544
+ * Description: Repository data-access component responsible for managing user data persistence
+ * using a flat text file ("users.txt"). Implements thread-safe CRUD operations.
+ */
 @Repository
 public class UserRepository {
 
-    // File handler object to read and write user data
+    /**
+     * File Handler Dependency:
+     * Manages low-level text file reading,writing and line-appending operations for "users.txt".
+     */
     private final FileHandler fileHandler;
 
-    // Constructor to initialize the FileHandler with "users.txt" file
+    /**
+     * Default Constructor:
+     * Initializes the repository component and links it to the text-based persistent store "users.txt".
+     */
     public UserRepository() {
         this.fileHandler = new FileHandler("users.txt");
     }
 
-    // Saves a single user to the file (synchronized prevents concurrent writing issues)
+    /**
+     * Save Operation (Thread-Safe):
+     * Appends a single user's serialized text record to the storage file.
+     * Uses the 'synchronized' keyword to prevent race conditions during concurrent write requests.
+     *
+     * @param user The User object (AdminUser or RegularUser) to persist
+     */
     public synchronized void save(User user) {
-        // Converts user object to text format and appends it as a new line in the file
+        // Convert user object into pipe-delimited text format and append as a new line in the file
         fileHandler.appendLine(user.toFileString());
     }
 
-    // Reads all user records from the text file and converts them to Java User objects
+    /**
+     * Retrieval Operation (Thread-Safe):
+     * Reads all raw text lines from "users.txt",parses each pipe-delimited entry,
+     * and reconstructs them back into appropriate concrete Java User objects.
+     *
+     * @return List containing all parsed User objects found in the storage file
+     */
     public synchronized List<User> findAll() {
-        // Read all raw text lines from "users.txt"
+        // Read all raw text lines from the storage file
         List<String> lines = fileHandler.readAllLines();
-        // Create an empty list to store user objects
+        // Create an empty dynamic list to hold instantiated user objects
         List<User> users = new ArrayList<>();
 
-        // Loop through each line in the file
+        // Iterate through each persistent text line
         for (String line : lines) {
-            // Split the line into fields using '|' as the separator
+            // Split line records into individual attributes using the pipe delimiter ("|")
             String[] parts = line.split("\\|");
 
-            // Ensure the line has at least 5 required fields before processing
+            // Validate that the record contains at least the minimum required fields (ID,username,password,email,role)
             if (parts.length >= 5) {
-                // Check if the image filename exists (index 5); if not, set it as empty string
+                // Safely extract optional image filename at index 5 if present; otherwise default to an empty string
                 String imageFilename = (parts.length >= 6) ? parts[5] : "";
 
-                // If role is ADMIN, create an AdminUser object
+                // Polymorphic instantiation check: if role identifier is "ADMIN", instantiate an AdminUser
                 if ("ADMIN".equals(parts[4])) {
-                    users.add(new AdminUser(parts[0], parts[1], parts[2], parts[3], imageFilename));
+                    users.add(new AdminUser(parts[0],parts[1],parts[2],parts[3],imageFilename));
                 }
-                // Otherwise, create a RegularUser object
+                // Otherwise, instantiate a RegularUser passing membership classification and profile picture
                 else {
-                    users.add(new RegularUser(parts[0], parts[1], parts[2], parts[3], parts[4], imageFilename));
+                    users.add(new RegularUser(parts[0],parts[1],parts[2],parts[3],parts[4],imageFilename));
                 }
             }
         }
 
-        // Return the full list of parsed user objects
+        // Return the complete collection of parsed user records
         return users;
     }
 
-    // Searches for a user matching the given username
+    /**
+     * Query Operation:
+     * Searches the user repository for an account matching the specified username string.
+     *
+     * @param username The system username to search for
+     * @return Optional containing the matched User object if found or empty otherwise
+     */
     public Optional<User> findByUsername(String username) {
-        // Get all users, filter by username, and return the first matching user if found
+        // Stream all users,filter by matching username property and return the first match
         return findAll().stream()
                 .filter(u -> u.getUsername().equals(username))
                 .findFirst();
     }
 
-    // Searches for a user matching the given user ID
+    /**
+     * Query Operation:
+     * Searches the user repository for an account matching the unique user ID string.
+     *
+     * @param id The unique user ID to search for
+     * @return Optional containing the matched User object if found, or empty otherwise
+     */
     public Optional<User> findById(String id) {
-        // Get all users, filter by ID, and return the first matching user if found
+        // Stream all users,filter by matching ID property and return the first match
         return findAll().stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst();
     }
 
-    // Updates an existing user's information in the text file
+    /**
+     * Update Operation (Thread-Safe):
+     * Modifies an existing user's stored information by locating their record via ID,
+     * replacing it with the updated object and rewriting the persistent file.
+     *
+     * @param updatedUser The User object containing modified attributes
+     */
     public synchronized void update(User updatedUser) {
-        // Fetch all existing users from the file
+        // Fetch all current user records from storage
         List<User> users = findAll();
 
-        // Find the matching user by ID and replace it with updated user data
+        // Iterate through the list to locate the record matching the updated user's ID
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId().equals(updatedUser.getId())) {
+                // Replace the old object reference with the updated user instance
                 users.set(i, updatedUser);
-                break; // Stop loop once user is found and updated
+                break; // Exit loop immediately once the record is updated
             }
         }
-        // Save the updated list back to the file
+        // Persist the modified list back to the storage file
         saveAll(users);
     }
 
-    // Deletes a user from the file using their user ID
+    /**
+     * Delete Operation (Thread-Safe):
+     * Removes a user record from the persistent text file based on their unique user ID.
+     *
+     * @param id The unique identifier of the user to delete
+     */
     public synchronized void delete(String id) {
-        // Filter out the user with matching ID and keep all other users
+        // Filter out the user whose ID matches the target, keeping all other records
         List<User> users = findAll().stream()
                 .filter(u -> !u.getId().equals(id))
                 .collect(Collectors.toList());
 
-        // Save the remaining user list back to the file
+        // Overwrite storage file with the filtered user collection
         saveAll(users);
     }
 
-    // Helper method to overwrite the entire "users.txt" file with the given list of users
+    /**
+     * Helper Persistence Method (Private):
+     * Overwrites the entire "users.txt" file with a fresh list of serialized user string lines.
+     *
+     * @param users The complete list of User objects to write to disk
+     */
     private void saveAll(List<User> users) {
-        // Convert all User objects to file text lines
+        // Map each User object into its corresponding pipe-delimited file string format
         List<String> lines = users.stream().map(User::toFileString).collect(Collectors.toList());
-        // Write all text lines back into the file
+        // Write the complete line collection back to the physical file
         fileHandler.writeAllLines(lines);
     }
 }
