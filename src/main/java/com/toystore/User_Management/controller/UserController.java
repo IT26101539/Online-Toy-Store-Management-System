@@ -122,3 +122,26 @@ public class UserController {
         // Returns the path to the profile update Thymeleaf template
         return "User_Management/profile-update";
     }
+
+    // HTTP POST endpoint to update user profile information and optional profile image upload
+    @PostMapping("/profile")
+    public String updateProfile(@RequestParam String email,
+                                @RequestParam(required = false) String membershipType,
+                                @RequestParam(value = "image", required = false) org.springframework.web.multipart.MultipartFile image,HttpSession session,RedirectAttributes redirectAttributes) {
+        // Security check:ensure the user is logged in before allowing profile modification
+        if (!sessionUtil.isLoggedIn(session)) return "redirect:/users/login";
+
+        try {
+            // Extract logged-in user ID from session context
+            String userId =sessionUtil.getLoggedInUserId(session);
+            // Call service layer to update profile details and profile picture file
+            userService.updateUserProfile(userId,email,membershipType,image);
+            // Add success message on successful update
+            redirectAttributes.addFlashAttribute("Success Message","Profile updated successfully.");
+        } catch (Exception e) {
+            // Catch update errors and display error message
+            redirectAttributes.addFlashAttribute("Error Message",e.getMessage());
+        }
+        // Redirect back to the profile view page
+        return "redirect:/users/profile";
+    }
