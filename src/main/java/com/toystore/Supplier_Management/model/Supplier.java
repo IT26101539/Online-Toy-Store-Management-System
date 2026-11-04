@@ -25,4 +25,7 @@ public abstract class Supplier {
         this.brandsSupplied = brandsSupplied;
         this.imageFilename = imageFilename != null ? imageFilename : "";
     }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 }
