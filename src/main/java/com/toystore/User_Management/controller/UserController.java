@@ -158,3 +158,17 @@ public class UserController {
         // Returns the path to the user management list template
         return "User_Management/user-list";
     }
+
+    // HTTP POST endpoint to delete a specific user account by their unique ID
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable String id,HttpSession session,RedirectAttributes redirectAttributes) {
+        // Security check:restrict delete operations exclusively to Admin users
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        // Invoke service method to delete the target user from the system repository
+        userService.deleteUser(id);
+        // Add success message confirming deletion
+        redirectAttributes.addFlashAttribute("Success Message","User deleted successfully.");
+        // Redirect back to the user management listing page
+        return "redirect:/users";
+    }
+}
