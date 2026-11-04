@@ -40,3 +40,22 @@ public class UserController {
         // Returns the path to the Thymeleaf registration template
         return "User_Management/register";
     }
+
+    // HTTP POST endpoint to process user registration form submissions
+    @PostMapping("/register")
+    public String registerUser(@RequestParam String username,@RequestParam String password,
+                               @RequestParam String email,@RequestParam String membershipType,
+                               RedirectAttributes redirectAttributes) {
+        try {
+            // Invoke service method to register a new regular user with provided details
+            userService.registerRegularUser(username,password,email,membershipType);
+            // Add a success flash message to be displayed on the redirected login page
+            redirectAttributes.addFlashAttribute("Success Message", "Registration successful. Please login.");
+            // Redirect user to the login page on successful registration
+            return "redirect:/users/login";
+        } catch (Exception e) {
+            // Catch any registration exceptions, store error message, and redirect back to registration form
+            redirectAttributes.addFlashAttribute("Error Message",e.getMessage());
+            return "redirect:/users/register";
+        }
+    }
