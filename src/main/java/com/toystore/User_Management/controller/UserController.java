@@ -20,3 +20,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/users") // Base URL prefix for all endpoints defined in this controller class
 public class UserController {
+
+    // Declare private service and utility dependencies for business logic and session management
+    private final UserService userService;
+    private final com.toystore.Admin_Management.service.AdminService adminService;
+    private final SessionUtil sessionUtil;
+
+    // Constructor-based dependency injection for Spring to wire dependencies automatically
+    @Autowired
+    public UserController(UserService userService,com.toystore.Admin_Management.service.AdminService adminService,SessionUtil sessionUtil) {
+        this.userService =userService;
+        this.adminService =adminService;
+        this.sessionUtil =sessionUtil;
+    }
