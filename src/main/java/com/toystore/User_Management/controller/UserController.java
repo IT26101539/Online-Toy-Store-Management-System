@@ -59,3 +59,10 @@ public class UserController {
             return "redirect:/users/register";
         }
     }
+
+    // HTTP GET endpoint to display the user login view page
+    @GetMapping("/login")
+    public String showLoginPage() {
+        // Returns the path to the Thymeleaf login template
+        return "User_Management/login";
+    }
