@@ -66,3 +66,35 @@ public class UserController {
         // Returns the path to the Thymeleaf login template
         return "User_Management/login";
     }
+
+    // HTTP POST endpoint to handle unified authentication for both regular Users and Admins
+    @PostMapping("/login")
+    public String loginUser(@RequestParam String username,@RequestParam String password,HttpSession session,RedirectAttributes redirectAttributes) {
+        try {
+            // Attempt to authenticate credentials as a regular user first
+            User user =userService.login(username, password);
+            // Initialize and store user details in the HTTP session
+            sessionUtil.loginUser(session,user.getId(),user.getUsername(),user.getRole());
+            // Add a welcoming success message for the regular user
+            redirectAttributes.addFlashAttribute("Success Message","Welcome back, " + user.getUsername() + "!");
+            // Redirect authenticated regular user to the main homepage
+            return "redirect:/";
+        } catch (Exception e) {
+            // If regular user authentication fails,try authenticating as an Admin as a fallback
+            try {
+                com.toystore.Admin_Management.model.Admin admin =adminService.login(username,password);
+                // Initialize and store admin details in the HTTP session
+                sessionUtil.loginUser(session,admin.getId(),admin.getUsername(),admin.getRole());
+                // Add welcoming success message for the admin
+                redirectAttributes.addFlashAttribute("successMessage","Welcome back, Admin " +admin.getUsername() + "!");
+                // Log the admin login action for auditing purposes
+                adminService.logAction(admin.getId(),"Logged in");
+                // Redirect authenticated admin to the admin dashboard
+                return "redirect:/admin/dashboard";
+            } catch (Exception ex) {
+                // If both regular user and admin logins fail, set error message and redirect back to login page
+                redirectAttributes.addFlashAttribute("errorMessage","Invalid username or password");
+                return "redirect:/users/login";
+            }
+        }
+    }
