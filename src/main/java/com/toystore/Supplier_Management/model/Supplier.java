@@ -53,5 +53,10 @@ public abstract class Supplier {
     public abstract String getDeliveryTimeEstimate();
     public abstract double getRestockCost();
     
+    // Each subclass returns its own type (LOCAL or INTERNATIONAL)
     public abstract String getType();
+
+    public String toFileString() {
+        return id + "|" + name + "|" + contact + "|" + brandsSupplied + "|" + getType() + "|" + (imageFilename != null ? imageFilename : "");
+    }
 }
