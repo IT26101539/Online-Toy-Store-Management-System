@@ -17,6 +17,7 @@ public abstract class Supplier {
         this(id, name, contact, brandsSupplied, "");
     }
 
+    // Main constructor: sets every field and uses empty text when the image is null
     public Supplier(String id, String name, String contact, String brandsSupplied, String imageFilename) {
         this.id = id;
         this.name = name;
