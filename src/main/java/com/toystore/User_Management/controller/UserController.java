@@ -145,3 +145,16 @@ public class UserController {
         // Redirect back to the profile view page
         return "redirect:/users/profile";
     }
+
+    // HTTP GET endpoint to retrieve and display a list of all registered users in the system
+    @GetMapping
+    public String listUsers(HttpSession session,Model model) {
+        // Security check:restrict access so only users with Admin roles can view the list
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        // Fetch complete list of users from the user service layer
+        List<User> users =userService.getAllUsers();
+        // Add the retrieved user list to the model for view rendering
+        model.addAttribute("users",users);
+        // Returns the path to the user management list template
+        return "User_Management/user-list";
+    }
