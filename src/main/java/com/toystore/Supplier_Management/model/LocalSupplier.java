@@ -13,6 +13,7 @@ public class LocalSupplier extends Supplier {
         super(id, name, contact, brandsSupplied, imageFilename);
     }
 
+    // Polymorphism: local suppliers deliver quickly
     @Override
     public String getDeliveryTimeEstimate() {
         return "1-3 Business Days";
