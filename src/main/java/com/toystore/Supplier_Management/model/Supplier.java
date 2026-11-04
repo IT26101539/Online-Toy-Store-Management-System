@@ -9,5 +9,6 @@ public abstract class Supplier {
     private String contact;
     private String brandsSupplied;
 
+    // Name of the logo file; empty when no logo is uploaded
     private String imageFilename;
 }
