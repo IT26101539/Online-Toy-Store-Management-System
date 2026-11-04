@@ -25,6 +25,7 @@ public class LocalSupplier extends Supplier {
         return 5000.0; // Fixed flat rate for local
     }
 
+    // Identifies this supplier as LOCAL
     @Override
     public String getType() {
         return "LOCAL";
