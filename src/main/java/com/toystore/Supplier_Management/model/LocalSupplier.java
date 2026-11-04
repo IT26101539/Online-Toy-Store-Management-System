@@ -18,4 +18,9 @@ public class LocalSupplier extends Supplier {
     public String getDeliveryTimeEstimate() {
         return "1-3 Business Days";
     }
+
+    @Override
+    public double getRestockCost() {
+        return 5000.0; // Fixed flat rate for local
+    }
 }
