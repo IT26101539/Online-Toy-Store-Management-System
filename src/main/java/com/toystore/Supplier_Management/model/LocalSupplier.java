@@ -8,6 +8,7 @@ public class LocalSupplier extends Supplier {
         super(id, name, contact, brandsSupplied);
     }
 
+    // Calls the Supplier constructor with the image file name
     public LocalSupplier(String id, String name, String contact, String brandsSupplied, String imageFilename) {
         super(id, name, contact, brandsSupplied, imageFilename);
     }
