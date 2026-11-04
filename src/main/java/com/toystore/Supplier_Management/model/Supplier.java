@@ -41,10 +41,14 @@ public abstract class Supplier {
     public String getImageFilename() { return imageFilename; }
     public void setImageFilename(String imageFilename) { this.imageFilename = imageFilename != null ? imageFilename : ""; }
 
+    // Returns the logo URL, or the placeholder image when no logo is uploaded
     public String getImageUrl() {
         if (imageFilename != null && !imageFilename.trim().isEmpty()) {
             return "/uploads/suppliers/" + imageFilename;
         }
         return "/images/placeholder-supplier.svg";
     }
+
+    public abstract String getDeliveryTimeEstimate();
+    public abstract double getRestockCost();
 }
