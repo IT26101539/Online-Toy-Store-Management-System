@@ -12,4 +12,9 @@ public class LocalSupplier extends Supplier {
     public LocalSupplier(String id, String name, String contact, String brandsSupplied, String imageFilename) {
         super(id, name, contact, brandsSupplied, imageFilename);
     }
+
+    @Override
+    public String getDeliveryTimeEstimate() {
+        return "1-3 Business Days";
+    }
 }
