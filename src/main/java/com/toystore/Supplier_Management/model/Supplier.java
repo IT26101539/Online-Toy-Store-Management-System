@@ -34,4 +34,7 @@ public abstract class Supplier {
 
     public String getContact() { return contact; }
     public void setContact(String contact) { this.contact = contact; }
+
+    public String getBrandsSupplied() { return brandsSupplied; }
+    public void setBrandsSupplied(String brandsSupplied) { this.brandsSupplied = brandsSupplied; }
 }
