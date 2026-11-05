@@ -52,6 +52,20 @@
 
                     <!-- Column 5:Action buttons (Delete action) -->
                     <td>
+                        <!--
+                           Delete Form:
+                           - th:action dynamically builds the URL path by substituting {id} with ${user.id}
+                           - method="post" ensures safe data submission (HTTP POST)
+                           - class="d-inline" keeps the form inline with other elements
+                           - onsubmit displays a JavaScript popup box asking for user confirmation before submitting
+                         -->
+                        <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post" class="d-inline"
+                              onsubmit="return confirm('Are you sure you want to delete this user?');">
+
+                            <!-- Delete submit button styled in red (btn-danger) with FontAwesome trash icon -->
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
