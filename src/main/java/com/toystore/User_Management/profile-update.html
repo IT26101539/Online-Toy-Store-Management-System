@@ -64,6 +64,17 @@
                         <!-- File input control matching the backend model attribute name 'image' -->
                         <input type="file" class="form-control" name="image" accept=".jpg,.jpeg,.png,.webp">
                     </div>
+
+                    <!-- INPUT 2: Read-only Username field -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Username</label>
+
+                        <!--
+                            - th:value="${user.username}":Fills input field with current username
+                            - disabled:Disables user interaction (prevents users from changing their username)
+                        -->
+                        <input type="text" class="form-control" th:value="${user.username}" disabled>
+                    </div>
                 </form>
             </div>
         </div>
