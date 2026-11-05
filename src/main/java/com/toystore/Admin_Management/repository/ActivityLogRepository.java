@@ -15,7 +15,7 @@ import java.util.List;
 // so Spring creates and manages its object automatically
 
 @Repository
-public class ActivityLogRepository {
+public class ActivityLogRepository{
 
     // Helper object used to read/write the log text file
 
@@ -23,35 +23,35 @@ public class ActivityLogRepository {
 
     // Constructor: links this repository to the file "admin_logs.txt"
 
-    public ActivityLogRepository() {
-        this.fileHandler = new FileHandler("admin_logs.txt");
+    public ActivityLogRepository(){
+        this.fileHandler=new FileHandler("admin_logs.txt");
     }
 
     // Saves one log entry by adding it as a new line at the end of the file.
     // "synchronized" = only one thread can run this at a time (prevents file corruption)
 
-    public synchronized void save(ActivityLog log) {
+    public synchronized void save(ActivityLog log){
         fileHandler.appendLine(log.toFileString());
     }
 
     // Reads all lines from the file and converts each line back into an ActivityLog object
 
-    public synchronized List<ActivityLog> findAll() {
+    public synchronized List<ActivityLog> findAll(){
 
         // Read every line of the file as text
 
-        List<String> lines = fileHandler.readAllLines();
+        List<String>lines=fileHandler.readAllLines();
 
         // Empty list to collect the ActivityLog objects
-        List<ActivityLog> logs = new ArrayList<>();
+        List<ActivityLog>logs=new ArrayList<>();
         for (String line : lines) {
 
             // Split the line at "|" (escaped as \\| because | is special in regex)
             String[] parts = line.split("\\|");
-            
+
             // A valid log line must have 3 parts: adminId, action, timestamp
-            if (parts.length >= 3) {
-                logs.add(new ActivityLog(parts[0], parts[1], parts[2]));
+            if (parts.length>=3) {
+                logs.add(new ActivityLog(parts[0],parts[1],parts[2]));
             }
         }
         return logs;
