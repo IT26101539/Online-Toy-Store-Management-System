@@ -32,6 +32,7 @@ public class SupplierService {
         }
     }
 
+    // Creates a new ID, saves the optional logo, then builds a Local or International supplier (Create)
     public void addSupplier(String name, String contact, String brands, String type, org.springframework.web.multipart.MultipartFile imageFile) throws java.io.IOException {
         String id = IdGenerator.generateId("S");
         String imageFilename = "";
