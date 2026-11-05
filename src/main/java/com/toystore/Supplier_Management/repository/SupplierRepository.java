@@ -27,6 +27,7 @@ public class SupplierRepository {
         fileHandler.appendLine(supplier.toFileString());
     }
 
+    // Reads every line of the file and builds LocalSupplier or InternationalSupplier objects (Read)
     public synchronized List<Supplier> findAll() {
         List<String> lines = fileHandler.readAllLines();
         List<Supplier> suppliers = new ArrayList<>();
@@ -42,5 +43,11 @@ public class SupplierRepository {
             }
         }
         return suppliers;
+    }
+
+    public Optional<Supplier> findById(String id) {
+        return findAll().stream()
+                .filter(s -> s.getId().equals(id))
+                .findFirst();
     }
 }
