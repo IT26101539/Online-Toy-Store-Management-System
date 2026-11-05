@@ -48,6 +48,15 @@
                             <!-- required -> Browser validation: User cannot leave this empty -->
                             <input type="text" class="form-control" id="username" name="username" placeholder="Choose a friendly username" required>
                         </div>
+
+                        <!-- Email Address Field Group -->
+                        <div class="mb-3">
+                            <!-- Label with FontAwesome envelope icon -->
+                            <label for="email" class="form-label fw-bold"><i class="fa-solid fa-envelope me-1 text-primary"></i> Email Address</label>
+                            <!-- Email input field (validates email format like user@domain.com) -->
+                            <!-- name="email" -> Key name sent to backend controller -->
+                            <input type="email" class="form-control" id="email" name="email" placeholder="e.g. kamal@gmail.com" required>
+                        </div>
                     </form>
                 </div>
     </div>
