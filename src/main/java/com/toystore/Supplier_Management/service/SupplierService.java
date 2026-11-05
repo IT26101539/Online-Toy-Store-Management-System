@@ -59,6 +59,7 @@ public class SupplierService {
         return supplierRepository.findById(id).orElse(null);
     }
 
+    // Searches by supplier name or brand, ignoring upper and lower case (Read)
     public List<Supplier> searchSuppliers(String query) {
         if (query == null || query.trim().isEmpty()) {
             return getAllSuppliers();
@@ -68,5 +69,10 @@ public class SupplierService {
                 .filter(s -> s.getName().toLowerCase().contains(lowerQuery) || 
                              s.getBrandsSupplied().toLowerCase().contains(lowerQuery))
                 .collect(Collectors.toList());
+    }
+
+    // Updates a supplier without changing the logo
+    public void updateSupplier(Supplier supplier) {
+        supplierRepository.update(supplier);
     }
 }
