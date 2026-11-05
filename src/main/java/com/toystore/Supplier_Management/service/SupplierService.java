@@ -49,7 +49,12 @@ public class SupplierService {
         supplierRepository.save(supplier);
     }
 
+    // Returns all suppliers
     public List<Supplier> getAllSuppliers() {
         return supplierRepository.findAll();
+    }
+    
+    public Supplier getSupplierById(String id) {
+        return supplierRepository.findById(id).orElse(null);
     }
 }
