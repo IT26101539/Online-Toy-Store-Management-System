@@ -29,6 +29,23 @@
                         - enctype="multipart/form-data":Required to handle file uploads (e.g.,profile pictures)
                     -->
                 <form th:action="@{/users/profile}" method="post" enctype="multipart/form-data">
+
+                    <!-- Header preview wrapper:Displays avatar image next to username and role -->
+                    <div class="d-flex align-items-center mb-4">
+
+                        <!--
+                            Profile Image Element:
+                            - th:src="${user.getImageUrl()}":Dynamically loads the image URL from the user object
+                            - alt="Profile Avatar":Accessibility text if image cannot load
+                            - style: Ensures image is cropped nicely (object-fit:cover) into an 80x80 circle
+                            - onerror: Fallback script to load a default placeholder image if the user's image fails to load
+                        -->
+                        <img th:src="${user.getImageUrl()}"
+                             alt="Profile Avatar"
+                             class="rounded-circle border shadow-sm me-3"
+                             style="width: 80px; height: 80px; object-fit: cover;"
+                             onerror="this.src='/images/placeholder-user.svg'">
+                    </div>
                 </form>
             </div>
         </div>
