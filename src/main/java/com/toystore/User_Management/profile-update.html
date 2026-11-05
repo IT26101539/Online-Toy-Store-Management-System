@@ -87,6 +87,27 @@
                         -->
                         <input type="email" class="form-control" name="email" th:value="${user.email}" required>
                     </div>
+
+                    <!--
+                            INPUT 4:Membership Select Dropdown Box
+                            - th:if="${user.role != 'ADMIN'}":Renders this whole dropdown block ONLY IF user is NOT an ADMIN
+                        -->
+                    <div class="mb-4" th:if="${user.role != 'ADMIN'}">
+                        <label class="form-label fw-bold">Membership Type</label>
+
+                        <!-- Select box bound to controller property name 'membershipType' -->
+                        <select class="form-select" name="membershipType">
+                            <!--
+                                - th:selected="${user.role == 'REGULAR'}":Sets 'selected' attribute if user is currently a REGULAR member
+                            -->
+                            <option value="REGULAR" th:selected="${user.role == 'REGULAR'}">Regular Member</option>
+
+                            <!--
+                                - th:selected="${user.role == 'PREMIUM'}":Sets 'selected' attribute if user is currently a PREMIUM member
+                            -->
+                            <option value="PREMIUM" th:selected="${user.role == 'PREMIUM'}">Premium Member</option>
+                        </select>
+                    </div>
                 </form>
             </div>
         </div>
