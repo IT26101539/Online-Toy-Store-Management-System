@@ -65,6 +65,22 @@
                             <!-- Password input field (masks characters with dots/asterisks for security) -->
                             <!-- name="password" -> Key name sent to backend controller -->
                             <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+
+
+                            <!-- Membership Tier Selection Group -->
+                            <div class="mb-4">
+                                <!-- Label with FontAwesome crown icon -->
+                                <label class="form-label fw-bold"><i class="fa-solid fa-crown me-1 text-warning"></i> Choose Membership Tier</label>
+
+                                <!-- Dropdown select menu -->
+                                <!-- name="membershipType" -> Key name sent to backend controller (e.g., Enum or String value) -->
+                                <select class="form-select fw-semibold" name="membershipType">
+                                    <!-- Option 1:Free Regular Tier -->
+                                    <option value="REGULAR">🎈 Regular Explorer (Free - Standard Shopping)</option>
+                                    <!-- Option 2:Paid Premium Tier (selected by default using 'selected' attribute) -->
+                                    <option value="PREMIUM" selected>👑 VIP Premium Kid (Rs. 2,999/mo - 10% OFF Every Order!)</option>
+                                </select>
+                            </div>
                         </div>
                     </form>
                 </div>
