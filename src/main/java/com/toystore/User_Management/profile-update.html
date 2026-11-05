@@ -45,6 +45,15 @@
                              class="rounded-circle border shadow-sm me-3"
                              style="width: 80px; height: 80px; object-fit: cover;"
                              onerror="this.src='/images/placeholder-user.svg'">
+
+                        <!-- User text information container right next to the avatar image -->
+                        <div>
+                            <!-- th:text="${user.username}":Replaces default text with the real logged-in username -->
+                            <h5 class="mb-0" th:text="${user.username}">Username</h5>
+
+                            <!-- th:text="${user.role}":Replaces default badge text with the user's current role (e.g. ADMIN,REGULAR) -->
+                            <span class="badge bg-primary" th:text="${user.role}">ROLE</span>
+                        </div>
                     </div>
                 </form>
             </div>
