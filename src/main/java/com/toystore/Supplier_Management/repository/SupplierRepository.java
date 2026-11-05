@@ -52,6 +52,7 @@ public class SupplierRepository {
                 .findFirst();
     }
 
+    // Replaces the matching supplier and rewrites the file (Update)
     public synchronized void update(Supplier updatedSupplier) {
         List<Supplier> suppliers = findAll();
         for (int i = 0; i < suppliers.size(); i++) {
