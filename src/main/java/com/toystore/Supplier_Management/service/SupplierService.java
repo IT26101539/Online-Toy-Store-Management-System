@@ -11,40 +11,40 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// COMPONENT 05: Supplier / Brand Management | Owner: IT26101537
+// COMPONENT 05: Supplier/Brand Management | Owner:IT26101537
 @Service
 public class SupplierService {
     // The service uses the repository for all file operations
     private final SupplierRepository supplierRepository;
 
-    // Spring injects the repository (Autowired)
+    // Spring injects the repository(Autowired)
     @Autowired
     public SupplierService(SupplierRepository supplierRepository) {
-        this.supplierRepository = supplierRepository;
+        this.supplierRepository =supplierRepository;
     }
 
     // Adds a supplier without an image (used by DataInitializer)
-    public void addSupplier(String name, String contact, String brands, String type) {
+    public void addSupplier(String name,String contact,String brands,String type) {
         try {
-            addSupplier(name, contact, brands, type, null);
+            addSupplier(name,contact, brands,type, null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    // Creates a new ID, saves the optional logo, then builds a Local or International supplier (Create)
-    public void addSupplier(String name, String contact, String brands, String type, org.springframework.web.multipart.MultipartFile imageFile) throws java.io.IOException {
-        String id = IdGenerator.generateId("S");
-        String imageFilename = "";
+    //Creates a new ID, saves the optional logo, then builds a Local or International supplier (Create)
+    public void addSupplier(String name,String contact,String brands,String type,org.springframework.web.multipart.MultipartFile imageFile) throws java.io.IOException {
+        String id =IdGenerator.generateId("S");
+        String imageFilename ="";
         if (imageFile != null && !imageFile.isEmpty()) {
-            imageFilename = com.toystore.common.ImageStorageUtil.saveImage("suppliers", id, imageFile);
+            imageFilename =com.toystore.common.ImageStorageUtil.saveImage ("suppliers", id, imageFile);
         }
 
         Supplier supplier;
-        if ("LOCAL".equals(type)) {
-            supplier = new LocalSupplier(id, name, contact, brands, imageFilename);
+        if ("LOCAL".equals(type)){
+            supplier = new LocalSupplier(id,name, contact,brands, imageFilename);
         } else {
-            supplier = new InternationalSupplier(id, name, contact, brands, imageFilename);
+            supplier = new InternationalSupplier(id,name, contact,brands,imageFilename);
         }
         supplierRepository.save(supplier);
     }
@@ -82,9 +82,20 @@ public class SupplierService {
             if (supplier.getImageFilename() != null && !supplier.getImageFilename().isEmpty()) {
                 com.toystore.common.ImageStorageUtil.deleteImage("suppliers", supplier.getImageFilename());
             }
-            String newFilename = com.toystore.common.ImageStorageUtil.saveImage("suppliers", supplier.getId(), newImageFile);
+            String newFilename = com.toystore.common.ImageStorageUtil.saveImage("suppliers",supplier.getId(), newImageFile);
             supplier.setImageFilename(newFilename);
         }
         supplierRepository.update(supplier);
+    }
+
+    // Deletes the supplier and its logo file (Delete)
+    public void deleteSupplier(String id) {
+        Supplier supplier =getSupplierById(id);
+        if (supplier != null) {
+            if (supplier.getImageFilename() != null && !supplier.getImageFilename().isEmpty()) {
+                com.toystore.common.ImageStorageUtil.deleteImage("suppliers", supplier.getImageFilename());
+            }
+            supplierRepository.delete(id);
+        }
     }
 }
