@@ -48,4 +48,8 @@ public class SupplierService {
         }
         supplierRepository.save(supplier);
     }
+
+    public List<Supplier> getAllSuppliers() {
+        return supplierRepository.findAll();
+    }
 }
