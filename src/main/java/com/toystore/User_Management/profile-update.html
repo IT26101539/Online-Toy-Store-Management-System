@@ -10,6 +10,7 @@
 <body>
 <!-- Defines the main content area that will be inserted into the base layout's "content" fragment -->
 <div layout:fragment="content">
+
     <!-- Bootstrap grid system:Center-aligns the inner column on the screen -->
     <div class="row justify-content-center">
 
@@ -23,11 +24,11 @@
                 <h3 class="mb-4">Profile Details</h3>
 
                 <!--
-                        Form configuration:
-                        - th:action="@{/users/profile}":Sends the form data to the HTTP POST endpoint '/users/profile'
-                        - method="post":Uses HTTP POST method to submit data securely
-                        - enctype="multipart/form-data":Required to handle file uploads (e.g.,profile pictures)
-                    -->
+                    Form configuration:
+                    - th:action="@{/users/profile}":Sends the form data to the HTTP POST endpoint '/users/profile'
+                    - method="post":Uses HTTP POST method to submit data securely
+                    - enctype="multipart/form-data":Required to handle file uploads (e.g.,profile pictures)
+                -->
                 <form th:action="@{/users/profile}" method="post" enctype="multipart/form-data">
 
                     <!-- Header preview wrapper:Displays avatar image next to username and role -->
@@ -54,7 +55,6 @@
                             <!-- th:text="${user.role}":Replaces default badge text with the user's current role (e.g. ADMIN,REGULAR) -->
                             <span class="badge bg-primary" th:text="${user.role}">ROLE</span>
                         </div>
-
                     </div>
 
                     <!-- INPUT 1: File selection field for updating profile picture -->
@@ -89,9 +89,9 @@
                     </div>
 
                     <!--
-                            INPUT 4:Membership Select Dropdown Box
-                            - th:if="${user.role != 'ADMIN'}":Renders this whole dropdown block ONLY IF user is NOT an ADMIN
-                        -->
+                        INPUT 4:Membership Select Dropdown Box
+                        - th:if="${user.role != 'ADMIN'}":Renders this whole dropdown block ONLY IF user is NOT an ADMIN
+                    -->
                     <div class="mb-4" th:if="${user.role != 'ADMIN'}">
                         <label class="form-label fw-bold">Membership Type</label>
 
@@ -108,6 +108,9 @@
                             <option value="PREMIUM" th:selected="${user.role == 'PREMIUM'}">Premium Member</option>
                         </select>
                     </div>
+
+                    <!-- SUBMIT BUTTON:Sends all filled input values to backend controller endpoint -->
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
                 </form>
             </div>
         </div>
