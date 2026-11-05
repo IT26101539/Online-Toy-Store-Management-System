@@ -38,8 +38,17 @@
                     <!-- th:action="@{/users/register}" -> Thymeleaf attribute that dynamically generates the POST submit URL -->
                     <!-- method="post" -> Sends form data securely to backend server -->
                     <form th:action="@{/users/register}" method="post">
-                    </form>
 
+                        <!-- Username Field Group -->
+                        <div class="mb-3">
+                            <!-- Label with FontAwesome user icon -->
+                            <label for="username" class="form-label fw-bold"><i class="fa-solid fa-user me-1 text-primary"></i> Username</label>
+                            <!-- Text input field for Username -->
+                            <!-- name="username" -> Key name sent to Spring Boot backend controller -->
+                            <!-- required -> Browser validation: User cannot leave this empty -->
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Choose a friendly username" required>
+                        </div>
+                    </form>
                 </div>
     </div>
     </div>
