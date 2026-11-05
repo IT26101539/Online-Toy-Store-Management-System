@@ -45,9 +45,21 @@ public class SupplierRepository {
         return suppliers;
     }
 
+    // Finds one supplier by its ID
     public Optional<Supplier> findById(String id) {
         return findAll().stream()
                 .filter(s -> s.getId().equals(id))
                 .findFirst();
+    }
+
+    public synchronized void update(Supplier updatedSupplier) {
+        List<Supplier> suppliers = findAll();
+        for (int i = 0; i < suppliers.size(); i++) {
+            if (suppliers.get(i).getId().equals(updatedSupplier.getId())) {
+                suppliers.set(i, updatedSupplier);
+                break;
+            }
+        }
+        saveAll(suppliers);
     }
 }
