@@ -23,11 +23,28 @@ public class SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
+    // Adds a supplier without an image (used by DataInitializer)
     public void addSupplier(String name, String contact, String brands, String type) {
         try {
             addSupplier(name, contact, brands, type, null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void addSupplier(String name, String contact, String brands, String type, org.springframework.web.multipart.MultipartFile imageFile) throws java.io.IOException {
+        String id = IdGenerator.generateId("S");
+        String imageFilename = "";
+        if (imageFile != null && !imageFile.isEmpty()) {
+            imageFilename = com.toystore.common.ImageStorageUtil.saveImage("suppliers", id, imageFile);
+        }
+
+        Supplier supplier;
+        if ("LOCAL".equals(type)) {
+            supplier = new LocalSupplier(id, name, contact, brands, imageFilename);
+        } else {
+            supplier = new InternationalSupplier(id, name, contact, brands, imageFilename);
+        }
+        supplierRepository.save(supplier);
     }
 }
