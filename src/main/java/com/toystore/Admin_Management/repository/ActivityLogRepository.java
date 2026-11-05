@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // COMPONENT 04 - Admin Management
-// Owner: IT26101539
+// Owner - IT26101539
 // @Repositor - tells Spring this class handles data storage,
 // so Spring creates and manages its object automatically
 
