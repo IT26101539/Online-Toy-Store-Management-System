@@ -75,4 +75,16 @@ public class SupplierService {
     public void updateSupplier(Supplier supplier) {
         supplierRepository.update(supplier);
     }
+
+    // Updates a supplier and replaces its logo when a new one is uploaded (Update)
+    public void updateSupplier(Supplier supplier, org.springframework.web.multipart.MultipartFile newImageFile) throws java.io.IOException {
+        if (newImageFile != null && !newImageFile.isEmpty()) {
+            if (supplier.getImageFilename() != null && !supplier.getImageFilename().isEmpty()) {
+                com.toystore.common.ImageStorageUtil.deleteImage("suppliers", supplier.getImageFilename());
+            }
+            String newFilename = com.toystore.common.ImageStorageUtil.saveImage("suppliers", supplier.getId(), newImageFile);
+            supplier.setImageFilename(newFilename);
+        }
+        supplierRepository.update(supplier);
+    }
 }
