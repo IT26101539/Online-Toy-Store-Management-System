@@ -19,6 +19,7 @@ public class InternationalSupplier extends Supplier {
         return "10-15 Business Days (Customs dependent)";
     }
 
+    // Polymorphism: international suppliers cost more
     @Override
     public double getRestockCost() {
         return 20000.0; // Higher cost for international
