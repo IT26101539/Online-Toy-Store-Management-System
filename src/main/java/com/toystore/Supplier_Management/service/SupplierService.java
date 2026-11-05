@@ -17,6 +17,7 @@ public class SupplierService {
     // The service uses the repository for all file operations
     private final SupplierRepository supplierRepository;
 
+    // Spring injects the repository (Autowired)
     @Autowired
     public SupplierService(SupplierRepository supplierRepository) {
         this.supplierRepository = supplierRepository;
