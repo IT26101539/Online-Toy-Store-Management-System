@@ -21,6 +21,15 @@
 
                 <!-- Form main header title with bottom margin of 4 (mb-4) -->
                 <h3 class="mb-4">Profile Details</h3>
+
+                <!--
+                        Form configuration:
+                        - th:action="@{/users/profile}":Sends the form data to the HTTP POST endpoint '/users/profile'
+                        - method="post":Uses HTTP POST method to submit data securely
+                        - enctype="multipart/form-data":Required to handle file uploads (e.g.,profile pictures)
+                    -->
+                <form th:action="@{/users/profile}" method="post" enctype="multipart/form-data">
+                </form>
             </div>
         </div>
     </div>
