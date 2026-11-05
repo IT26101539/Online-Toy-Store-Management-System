@@ -10,7 +10,7 @@ import com.toystore.User_Management.model.User;
 // Admin "extends" User, so it gets id, username, passwordHash and email from User
 // and adds its own extra field: permissions
 
-public class Admin extends User {
+public class Admin extends User{
 
     // Encapsulation: private field, accessed only via getter/setter
     private String permissions; // exsample - "ALL", "READ_ONLY"
