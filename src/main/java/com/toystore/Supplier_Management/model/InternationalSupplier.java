@@ -7,4 +7,8 @@ public class InternationalSupplier extends Supplier {
     public InternationalSupplier(String id, String name, String contact, String brandsSupplied) {
         super(id, name, contact, brandsSupplied);
     }
+
+    public InternationalSupplier(String id, String name, String contact, String brandsSupplied, String imageFilename) {
+        super(id, name, contact, brandsSupplied, imageFilename);
+    }
 }
