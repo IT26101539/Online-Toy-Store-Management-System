@@ -14,4 +14,5 @@ import java.util.stream.Collectors;
 // COMPONENT 05: Supplier / Brand Management | Owner: IT26101537
 @Service
 public class SupplierService {
+    private final SupplierRepository supplierRepository;
 }
