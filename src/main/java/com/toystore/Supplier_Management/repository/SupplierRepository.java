@@ -63,4 +63,11 @@ public class SupplierRepository {
         }
         saveAll(suppliers);
     }
+
+    public synchronized void delete(String id) {
+        List<Supplier> suppliers = findAll().stream()
+                .filter(s -> !s.getId().equals(id))
+                .collect(Collectors.toList());
+        saveAll(suppliers);
+    }
 }
