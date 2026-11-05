@@ -17,7 +17,12 @@ public class SupplierRepository {
     // Helper class that reads and writes suppliers.txt
     private final FileHandler fileHandler;
 
+    // Opens the suppliers.txt file
     public SupplierRepository() {
         this.fileHandler = new FileHandler("suppliers.txt");
+    }
+
+    public synchronized void save(Supplier supplier) {
+        fileHandler.appendLine(supplier.toFileString());
     }
 }
