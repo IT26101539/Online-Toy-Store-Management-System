@@ -11,51 +11,51 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-// COMPONENT 05: Supplier / Brand Management | Owner: IT26101537
+// COMPONENT 05: SupplierBrand Management | Owner: IT26101537
 @Repository
 public class SupplierRepository {
-    // Helper class that reads and writes suppliers.txt
+    //Helper class that reads and writes suppliers.txt
     private final FileHandler fileHandler;
 
-    // Opens the suppliers.txt file
+    //  Opens the suppliers.txt file
     public SupplierRepository() {
-        this.fileHandler = new FileHandler("suppliers.txt");
+        this.fileHandler =new FileHandler("suppliers.txt");
     }
 
-    // Adds one supplier to the end of the file (Create)
-    public synchronized void save(Supplier supplier) {
+    //Adds one supplier to the end of the file (Create)
+    public synchronized void save(Supplier supplier){
         fileHandler.appendLine(supplier.toFileString());
     }
 
-    // Reads every line of the file and builds LocalSupplier or InternationalSupplier objects (Read)
+    //Reads every line of the file and builds LocalSupplier or InternationalSupplier objects (Read)
     public synchronized List<Supplier> findAll() {
         List<String> lines = fileHandler.readAllLines();
         List<Supplier> suppliers = new ArrayList<>();
-        for (String line : lines) {
-            String[] parts = line.split("\\|");
+        for (String line : lines){
+            String[] parts= line.split("\\|");
             if (parts.length >= 5) {
                 String imageFilename = (parts.length >= 6) ? parts[5] : "";
                 if ("LOCAL".equals(parts[4])) {
-                    suppliers.add(new LocalSupplier(parts[0], parts[1], parts[2], parts[3], imageFilename));
+                    suppliers.add(new LocalSupplier(parts[0], parts[1],parts[2], parts[3],imageFilename));
                 } else {
-                    suppliers.add(new InternationalSupplier(parts[0], parts[1], parts[2], parts[3], imageFilename));
+                    suppliers.add(new InternationalSupplier(parts[0], parts[1],parts[2], parts[3],imageFilename));
                 }
             }
         }
         return suppliers;
     }
 
-    // Finds one supplier by its ID
+    //Finds one supplier by its ID
     public Optional<Supplier> findById(String id) {
         return findAll().stream()
                 .filter(s -> s.getId().equals(id))
                 .findFirst();
     }
 
-    // Replaces the matching supplier and rewrites the file (Update)
+    //Replaces the matching supplier and rewrites the file (Update)
     public synchronized void update(Supplier updatedSupplier) {
-        List<Supplier> suppliers = findAll();
-        for (int i = 0; i < suppliers.size(); i++) {
+        List<Supplier> suppliers =findAll();
+        for (int i=0; i < suppliers.size(); i++) {
             if (suppliers.get(i).getId().equals(updatedSupplier.getId())) {
                 suppliers.set(i, updatedSupplier);
                 break;
@@ -64,11 +64,17 @@ public class SupplierRepository {
         saveAll(suppliers);
     }
 
-    // Removes the supplier with this ID and rewrites the file (Delete)
+    //Removes the supplier with this ID and rewrites the file (Delete)
     public synchronized void delete(String id) {
-        List<Supplier> suppliers = findAll().stream()
+        List<Supplier>suppliers = findAll().stream()
                 .filter(s -> !s.getId().equals(id))
                 .collect(Collectors.toList());
         saveAll(suppliers);
+    }
+
+    //Writes the whole supplier list back to suppliers.txt
+    private void saveAll(List<Supplier> suppliers){
+        List<String>lines = suppliers.stream().map(Supplier::toFileString).collect(Collectors.toList());
+        fileHandler.writeAllLines(lines);
     }
 }
