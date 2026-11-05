@@ -13,8 +13,14 @@ public class InternationalSupplier extends Supplier {
         super(id, name, contact, brandsSupplied, imageFilename);
     }
 
+    // Polymorphism: international suppliers take longer because of customs
     @Override
     public String getDeliveryTimeEstimate() {
         return "10-15 Business Days (Customs dependent)";
+    }
+
+    @Override
+    public double getRestockCost() {
+        return 20000.0; // Higher cost for international
     }
 }
