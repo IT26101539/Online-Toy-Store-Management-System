@@ -22,4 +22,12 @@ public class SupplierService {
     public SupplierService(SupplierRepository supplierRepository) {
         this.supplierRepository = supplierRepository;
     }
+
+    public void addSupplier(String name, String contact, String brands, String type) {
+        try {
+            addSupplier(name, contact, brands, type, null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
