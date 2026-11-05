@@ -33,7 +33,14 @@
                         <!-- Subtitle text encouraging users to sign up -->
                         <p class="text-secondary fw-semibold">Sign up to buy awesome toys & track your orders</p>
                     </div>
-    </div>
+
+                    <!-- Registration Form -->
+                    <!-- th:action="@{/users/register}" -> Thymeleaf attribute that dynamically generates the POST submit URL -->
+                    <!-- method="post" -> Sends form data securely to backend server -->
+                    <form th:action="@{/users/register}" method="post">
+                    </form>
+
+                </div>
     </div>
     </div>
     </div>
