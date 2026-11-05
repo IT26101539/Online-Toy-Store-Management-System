@@ -75,6 +75,18 @@
                         -->
                         <input type="text" class="form-control" th:value="${user.username}" disabled>
                     </div>
+
+                    <!-- INPUT 3:Email input field -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email address</label>
+
+                        <!--
+                            - name="email":Key used to map data on backend request controller
+                            - th:value="${user.email}":Pre-fills input with current email address
+                            - required:Enforces client-side validation so form cannot be submitted empty
+                        -->
+                        <input type="email" class="form-control" name="email" th:value="${user.email}" required>
+                    </div>
                 </form>
             </div>
         </div>
