@@ -54,6 +54,15 @@
                             <!-- th:text="${user.role}":Replaces default badge text with the user's current role (e.g. ADMIN,REGULAR) -->
                             <span class="badge bg-primary" th:text="${user.role}">ROLE</span>
                         </div>
+
+                    </div>
+
+                    <!-- INPUT 1: File selection field for updating profile picture -->
+                    <div class="mb-3">
+                        <!-- Field label with bold styling and muted text explaining supported file extensions -->
+                        <label class="form-label fw-bold">Profile Picture <span class="text-muted fw-normal">(Optional &mdash; JPG,PNG,WEBP,max 5MB)</span></label>
+                        <!-- File input control matching the backend model attribute name 'image' -->
+                        <input type="file" class="form-control" name="image" accept=".jpg,.jpeg,.png,.webp">
                     </div>
                 </form>
             </div>
