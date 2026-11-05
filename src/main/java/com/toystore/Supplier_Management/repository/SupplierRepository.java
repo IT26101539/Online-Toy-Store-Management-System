@@ -22,7 +22,25 @@ public class SupplierRepository {
         this.fileHandler = new FileHandler("suppliers.txt");
     }
 
+    // Adds one supplier to the end of the file (Create)
     public synchronized void save(Supplier supplier) {
         fileHandler.appendLine(supplier.toFileString());
+    }
+
+    public synchronized List<Supplier> findAll() {
+        List<String> lines = fileHandler.readAllLines();
+        List<Supplier> suppliers = new ArrayList<>();
+        for (String line : lines) {
+            String[] parts = line.split("\\|");
+            if (parts.length >= 5) {
+                String imageFilename = (parts.length >= 6) ? parts[5] : "";
+                if ("LOCAL".equals(parts[4])) {
+                    suppliers.add(new LocalSupplier(parts[0], parts[1], parts[2], parts[3], imageFilename));
+                } else {
+                    suppliers.add(new InternationalSupplier(parts[0], parts[1], parts[2], parts[3], imageFilename));
+                }
+            }
+        }
+        return suppliers;
     }
 }
