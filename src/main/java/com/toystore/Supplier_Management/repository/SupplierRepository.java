@@ -64,6 +64,7 @@ public class SupplierRepository {
         saveAll(suppliers);
     }
 
+    // Removes the supplier with this ID and rewrites the file (Delete)
     public synchronized void delete(String id) {
         List<Supplier> suppliers = findAll().stream()
                 .filter(s -> !s.getId().equals(id))
