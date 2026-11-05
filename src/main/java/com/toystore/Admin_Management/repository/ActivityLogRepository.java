@@ -33,3 +33,27 @@ public class ActivityLogRepository {
     public synchronized void save(ActivityLog log) {
         fileHandler.appendLine(log.toFileString());
     }
+
+    // Reads all lines from the file and converts each line back into an ActivityLog object
+
+    public synchronized List<ActivityLog> findAll() {
+
+        // Read every line of the file as text
+
+        List<String> lines = fileHandler.readAllLines();
+
+        // Empty list to collect the ActivityLog objects
+        List<ActivityLog> logs = new ArrayList<>();
+        for (String line : lines) {
+
+            // Split the line at "|" (escaped as \\| because | is special in regex)
+            String[] parts = line.split("\\|");
+            
+            // A valid log line must have 3 parts: adminId, action, timestamp
+            if (parts.length >= 3) {
+                logs.add(new ActivityLog(parts[0], parts[1], parts[2]));
+            }
+        }
+        return logs;
+    }
+}
