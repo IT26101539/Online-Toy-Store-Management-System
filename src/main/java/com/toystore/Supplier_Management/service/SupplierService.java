@@ -54,7 +54,19 @@ public class SupplierService {
         return supplierRepository.findAll();
     }
     
+    // Returns one supplier, or null when it does not exist
     public Supplier getSupplierById(String id) {
         return supplierRepository.findById(id).orElse(null);
+    }
+
+    public List<Supplier> searchSuppliers(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return getAllSuppliers();
+        }
+        String lowerQuery = query.toLowerCase();
+        return getAllSuppliers().stream()
+                .filter(s -> s.getName().toLowerCase().contains(lowerQuery) || 
+                             s.getBrandsSupplied().toLowerCase().contains(lowerQuery))
+                .collect(Collectors.toList());
     }
 }
