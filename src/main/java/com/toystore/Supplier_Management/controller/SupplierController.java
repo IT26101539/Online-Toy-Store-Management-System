@@ -68,6 +68,7 @@ public class SupplierController {
         return "redirect:/suppliers";
     }
 
+    // Opens the edit page for the chosen supplier
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable String id, HttpSession session, Model model) {
         if (!sessionUtil.isAdmin(session)) return "redirect:/";
