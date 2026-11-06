@@ -77,4 +77,27 @@ public class SupplierController {
         model.addAttribute("supplier", supplier);
         return "Supplier_Management/supplier-edit";
     }
+
+    // Updates the contact, brands and logo of a supplier (Update)
+    @PostMapping("/edit/{id}")
+    public String editSupplier(@PathVariable String id, @RequestParam String contact,
+                               @RequestParam String brands,
+                               @RequestParam(value = "image", required = false) org.springframework.web.multipart.MultipartFile image,
+                               HttpSession session, 
+                               RedirectAttributes redirectAttributes) {
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        try {
+            Supplier supplier = supplierService.getSupplierById(id);
+            if (supplier != null) {
+                supplier.setContact(contact);
+                supplier.setBrandsSupplied(brands);
+                supplierService.updateSupplier(supplier, image);
+                redirectAttributes.addFlashAttribute("successMessage", "Supplier updated successfully.");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/suppliers/edit/" + id;
+        }
+        return "redirect:/suppliers";
+    }
 }
