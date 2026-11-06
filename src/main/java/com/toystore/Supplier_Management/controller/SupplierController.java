@@ -16,4 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/suppliers")
 public class SupplierController {
+
+    private final SupplierService supplierService;
+    private final SessionUtil sessionUtil;
 }
