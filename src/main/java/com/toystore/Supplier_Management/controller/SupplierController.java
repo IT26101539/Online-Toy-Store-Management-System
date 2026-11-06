@@ -20,4 +20,11 @@ public class SupplierController {
     // Service for supplier work and helper to check the admin session
     private final SupplierService supplierService;
     private final SessionUtil sessionUtil;
+
+    // Spring injects the service and session helper (Autowired)
+    @Autowired
+    public SupplierController(SupplierService supplierService, SessionUtil sessionUtil) {
+        this.supplierService = supplierService;
+        this.sessionUtil = sessionUtil;
+    }
 }
