@@ -44,6 +44,7 @@ public class SupplierController {
         return "Supplier_Management/supplier-list";
     }
 
+    // Opens the registration page (admin only)
     @GetMapping("/register")
     public String showRegisterForm(HttpSession session) {
         if (!sessionUtil.isAdmin(session)) return "redirect:/";
