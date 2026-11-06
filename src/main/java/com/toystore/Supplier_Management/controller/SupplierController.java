@@ -50,4 +50,21 @@ public class SupplierController {
         if (!sessionUtil.isAdmin(session)) return "redirect:/";
         return "Supplier_Management/supplier-register";
     }
+
+    // Saves a new supplier from the registration form and shows a success or error message (Create)
+    @PostMapping("/register")
+    public String registerSupplier(@RequestParam String name, @RequestParam String contact,
+                                   @RequestParam String brands, @RequestParam String type,
+                                   @RequestParam(value = "image", required = false) org.springframework.web.multipart.MultipartFile image,
+                                   HttpSession session, RedirectAttributes redirectAttributes) {
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        try {
+            supplierService.addSupplier(name, contact, brands, type, image);
+            redirectAttributes.addFlashAttribute("successMessage", "Supplier added successfully.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/suppliers/register";
+        }
+        return "redirect:/suppliers";
+    }
 }
