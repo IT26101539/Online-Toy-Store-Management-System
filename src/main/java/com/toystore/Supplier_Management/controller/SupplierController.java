@@ -67,4 +67,13 @@ public class SupplierController {
         }
         return "redirect:/suppliers";
     }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable String id, HttpSession session, Model model) {
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        Supplier supplier = supplierService.getSupplierById(id);
+        if (supplier == null) return "redirect:/suppliers";
+        model.addAttribute("supplier", supplier);
+        return "Supplier_Management/supplier-edit";
+    }
 }
