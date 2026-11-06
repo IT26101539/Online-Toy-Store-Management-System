@@ -11,3 +11,8 @@ public class CartItem {
         this.toy = toy;
         this.quantity = quantity;
     }
+    public Toy getToy() { return toy; }
+    public void setToy(Toy toy) { this.toy = toy; }
+
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
