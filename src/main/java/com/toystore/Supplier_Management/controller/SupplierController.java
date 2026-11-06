@@ -43,4 +43,10 @@ public class SupplierController {
         model.addAttribute("suppliers", suppliers);
         return "Supplier_Management/supplier-list";
     }
+
+    @GetMapping("/register")
+    public String showRegisterForm(HttpSession session) {
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        return "Supplier_Management/supplier-register";
+    }
 }
