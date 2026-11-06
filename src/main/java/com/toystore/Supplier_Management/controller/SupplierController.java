@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping("/suppliers")
 public class SupplierController {
 
+    // Service for supplier work and helper to check the admin session
     private final SupplierService supplierService;
     private final SessionUtil sessionUtil;
 }
