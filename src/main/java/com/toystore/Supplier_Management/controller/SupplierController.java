@@ -27,4 +27,20 @@ public class SupplierController {
         this.supplierService = supplierService;
         this.sessionUtil = sessionUtil;
     }
+
+    // Shows the supplier list; filters by name or brand when a search word is given (admin only)
+    @GetMapping
+    public String listSuppliers(@RequestParam(required = false) String search, HttpSession session, Model model) {
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        
+        List<Supplier> suppliers;
+        if (search != null && !search.isEmpty()) {
+            suppliers = supplierService.searchSuppliers(search);
+            model.addAttribute("searchQuery", search);
+        } else {
+            suppliers = supplierService.getAllSuppliers();
+        }
+        model.addAttribute("suppliers", suppliers);
+        return "Supplier_Management/supplier-list";
+    }
 }
