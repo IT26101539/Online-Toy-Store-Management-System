@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- Specifies the Thymeleaf namespace (th:) and the Thymeleaf Layout Dialect namespace (layout:) -->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}"> <!-- Wraps this page inside the main template found at common/layout.html -->
+<head>
+    <!-- Sets the text shown on the browser tab for this specific page -->
+    <title>My Profile</title>
+</head>
+<body>
+<!-- Defines the main content area that will be inserted into the base layout's "content" fragment -->
+<div layout:fragment="content">
+
+    <!-- Bootstrap grid system:Center-aligns the inner column on the screen -->
+    <div class="row justify-content-center">
+
+        <!-- Column size taking 8 out of 12 grid slots on medium-sized screens and larger -->
+        <div class="col-md-8">
+
+            <!-- Main card container with padding of 4 (p-4) to hold the form components -->
+            <div class="card p-4">
+
+                <!-- Form main header title with bottom margin of 4 (mb-4) -->
+                <h3 class="mb-4">Profile Details</h3>
+
+                <!--
+                    Form configuration:
+                    - th:action="@{/users/profile}":Sends the form data to the HTTP POST endpoint '/users/profile'
+                    - method="post":Uses HTTP POST method to submit data securely
+                    - enctype="multipart/form-data":Required to handle file uploads (e.g.,profile pictures)
+                -->
+                <form th:action="@{/users/profile}" method="post" enctype="multipart/form-data">
+
+                    <!-- Header preview wrapper:Displays avatar image next to username and role -->
+                    <div class="d-flex align-items-center mb-4">
+
+                        <!--
+                            Profile Image Element:
+                            - th:src="${user.getImageUrl()}":Dynamically loads the image URL from the user object
+                            - alt="Profile Avatar":Accessibility text if image cannot load
+                            - style: Ensures image is cropped nicely (object-fit:cover) into an 80x80 circle
+                            - onerror: Fallback script to load a default placeholder image if the user's image fails to load
+                        -->
+                        <img th:src="${user.getImageUrl()}"
+                             alt="Profile Avatar"
+                             class="rounded-circle border shadow-sm me-3"
+                             style="width: 80px; height: 80px; object-fit: cover;"
+                             onerror="this.src='/images/placeholder-user.svg'">
+
+                        <!-- User text information container right next to the avatar image -->
+                        <div>
+                            <!-- th:text="${user.username}":Replaces default text with the real logged-in username -->
+                            <h5 class="mb-0" th:text="${user.username}">Username</h5>
+
+                            <!-- th:text="${user.role}":Replaces default badge text with the user's current role (e.g. ADMIN,REGULAR) -->
+                            <span class="badge bg-primary" th:text="${user.role}">ROLE</span>
+                        </div>
+                    </div>
+
+                    <!-- INPUT 1: File selection field for updating profile picture -->
+                    <div class="mb-3">
+                        <!-- Field label with bold styling and muted text explaining supported file extensions -->
+                        <label class="form-label fw-bold">Profile Picture <span class="text-muted fw-normal">(Optional &mdash; JPG,PNG,WEBP,max 5MB)</span></label>
+                        <!-- File input control matching the backend model attribute name 'image' -->
+                        <input type="file" class="form-control" name="image" accept=".jpg,.jpeg,.png,.webp">
+                    </div>
+
+                    <!-- INPUT 2: Read-only Username field -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Username</label>
+
+                        <!--
+                            - th:value="${user.username}":Fills input field with current username
+                            - disabled:Disables user interaction (prevents users from changing their username)
+                        -->
+                        <input type="text" class="form-control" th:value="${user.username}" disabled>
+                    </div>
+
+                    <!-- INPUT 3:Email input field -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email address</label>
+
+                        <!--
+                            - name="email":Key used to map data on backend request controller
+                            - th:value="${user.email}":Pre-fills input with current email address
+                            - required:Enforces client-side validation so form cannot be submitted empty
+                        -->
+                        <input type="email" class="form-control" name="email" th:value="${user.email}" required>
+                    </div>
+
+                    <!--
+                        INPUT 4:Membership Select Dropdown Box
+                        - th:if="${user.role != 'ADMIN'}":Renders this whole dropdown block ONLY IF user is NOT an ADMIN
+                    -->
+                    <div class="mb-4" th:if="${user.role != 'ADMIN'}">
+                        <label class="form-label fw-bold">Membership Type</label>
+
+                        <!-- Select box bound to controller property name 'membershipType' -->
+                        <select class="form-select" name="membershipType">
+                            <!--
+                                - th:selected="${user.role == 'REGULAR'}":Sets 'selected' attribute if user is currently a REGULAR member
+                            -->
+                            <option value="REGULAR" th:selected="${user.role == 'REGULAR'}">Regular Member</option>
+
+                            <!--
+                                - th:selected="${user.role == 'PREMIUM'}":Sets 'selected' attribute if user is currently a PREMIUM member
+                            -->
+                            <option value="PREMIUM" th:selected="${user.role == 'PREMIUM'}">Premium Member</option>
+                        </select>
+                    </div>
+
+                    <!-- SUBMIT BUTTON:Sends all filled input values to backend controller endpoint -->
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
