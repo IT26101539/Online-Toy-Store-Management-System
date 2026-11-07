@@ -35,3 +35,22 @@ public class AdminService implements AdminOperations {
         this.logRepository = logRepository;
     }
 
+    // Registers a new admin
+    @Override
+    public void registerAdmin(String username,String password,String email,String permissions) throws Exception {
+
+        // Reject the request if the username is already taken
+        if (adminRepository.findByUsername(username).isPresent()) {
+            throw new Exception("Admin username already exists");
+        }
+        String id = IdGenerator.generateId("A");
+        // unique ID starting with "A"
+
+        String hashedPassword = hashPassword(password);
+        // never store the plain password
+
+        Admin admin = new Admin(id, username, hashedPassword, email, permissions);
+        adminRepository.save(admin);
+        // write to admins.txt
+    }
+
