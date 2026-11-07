@@ -59,3 +59,11 @@
                         </td>
                         <!-- Estimated delivery time (different for each supplier type) -->
                         <td th:text="${supplier.getDeliveryTimeEstimate()}"></td>
+                        <!-- Edit button and Delete button (asks for confirmation) -->
+                        <td>
+                            <a th:href="@{/suppliers/edit/{id}(id=${supplier.id})}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <form th:action="@{/suppliers/delete/{id}(id=${supplier.id})}" method="post" class="d-inline" onsubmit="return confirm('Delete this supplier?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
