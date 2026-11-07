@@ -67,6 +67,7 @@
                             </form>
                         </td>
                     </tr>
+                    <!-- Message shown when no suppliers are found -->
                     <tr th:if="${#lists.isEmpty(suppliers)}">
                         <td colspan="6" class="text-center py-3">No suppliers found.</td>
                     </tr>
