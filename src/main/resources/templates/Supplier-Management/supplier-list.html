@@ -57,3 +57,5 @@
                         <td>
                             <span class="badge" th:classappend="${supplier.type == 'LOCAL' ? 'bg-success' : 'bg-info text-dark'}" th:text="${supplier.type}"></span>
                         </td>
+                        <!-- Estimated delivery time (different for each supplier type) -->
+                        <td th:text="${supplier.getDeliveryTimeEstimate()}"></td>
