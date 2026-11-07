@@ -28,10 +28,13 @@ public class AdminRepository {
         this.fileHandler = new FileHandler("admins.txt");
     }
 
+    // CREATE - adds one admin as a new line at the end of the file
+    // synchronized = only one thread at a time (prevents file corruption)
     public synchronized void save(Admin admin) {
         fileHandler.appendLine(admin.toFileString());
     }
 
+    // READ ALL: reads every line and converts each into an Admin object
     public synchronized List<Admin> findAll() {
         List<String> lines = fileHandler.readAllLines();
         List<Admin> admins = new ArrayList<>();
