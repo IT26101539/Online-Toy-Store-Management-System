@@ -53,3 +53,44 @@ public class AdminRepository {
         }
         return admins;
     }
+
+    // Finds an admin by username. Optional = the result may or may not exist
+    public Optional<Admin> findByUsername(String username) {
+        return findAll().stream()                                // turn the list into a stream
+                .filter(a -> a.getUsername().equals(username))   // keep only matching usernames
+                .findFirst();                                    // take the first match (if any)
+    }
+
+    // Finds an admin by ID, same idea as above
+    public Optional<Admin> findById(String id) {
+        return findAll().stream()
+                .filter(a -> a.getId().equals(id))
+                .findFirst();
+    }
+
+    // UPDATE: replaces the admin that has the same ID, then rewrites the whole file
+    public synchronized void update(Admin updatedAdmin) {
+        List<Admin> admins = findAll();
+        for (int i = 0; i < admins.size(); i++) {
+            if (admins.get(i).getId().equals(updatedAdmin.getId())) {
+                admins.set(i, updatedAdmin);   // replace the old object with the new one
+                break;                         // stop the loop, we found it
+            }
+        }
+        saveAll(admins);
+    }
+
+    // DELETE: keeps every admin EXCEPT the one with the given ID, then rewrites the file
+    public synchronized void delete(String id) {
+        List<Admin> admins = findAll().stream()
+                .filter(a -> !a.getId().equals(id))   // "!" = keep those whose ID is NOT this one
+                .collect(Collectors.toList());        // collect the result back into a list
+        saveAll(admins);
+    }
+
+    // Converts all Admin objects to text lines and overwrites the whole file
+    private void saveAll(List<Admin> admins) {
+        List<String> lines = admins.stream().map(Admin::toFileString).collect(Collectors.toList());
+        fileHandler.writeAllLines(lines);
+    }
+}
