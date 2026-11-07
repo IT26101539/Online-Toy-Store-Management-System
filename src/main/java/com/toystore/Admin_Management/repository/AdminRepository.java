@@ -30,3 +30,24 @@ public class AdminRepository{
     public synchronized void save(Admin admin) {
         fileHandler.appendLine(admin.toFileString());
     }
+    // READ ALL: reads every line and converts each into an Admin object
+    public synchronized List<Admin> findAll() {
+
+    }
+        List<String> lines = fileHandler.readAllLines();
+        List<Admin> admins = new ArrayList<>();
+
+        for (String line : lines) {
+            // Split the line at "|"
+            // Format: id|username|passwordHash|email|ROLE|permissions
+
+            String[] parts = line.split("\\|");
+            // A valid admin line must have 6 parts
+            if (parts.length >= 6) {
+
+                // parts[4] is the role ("ADMIN"), which is skipped because Admin sets it itself
+                admins.add(new Admin(parts[0], parts[1], parts[2], parts[3], parts[5]));
+            }
+        }
+        return admins;
+    }
