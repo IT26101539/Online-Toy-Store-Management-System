@@ -23,3 +23,18 @@
                 <a th:if="${searchQuery != null}" th:href="@{/suppliers}" class="btn btn-outline-secondary ms-2">Clear</a>
             </form>
         </div>
+
+        <!-- Supplier table with column headings -->
+        <div class="table-responsive">
+            <table class="table table-hover bg-white rounded shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Supplier Name</th>
+                        <th>Contact</th>
+                        <th>Brands</th>
+                        <th>Type</th>
+                        <th>Est. Delivery Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
