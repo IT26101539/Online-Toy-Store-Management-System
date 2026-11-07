@@ -9,3 +9,10 @@ import com.toystore.Admin_Management.repository.ActivityLogRepository;
 import com.toystore.Admin_Management.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.security.MessageDigest;              // used for hashing
+import java.security.NoSuchAlgorithmException;   // thrown if the hash algorithm is missing
+import java.time.LocalDateTime;                  // current date and time
+import java.util.Base64;                         // converts bytes into readable text
+import java.util.List;
+import java.util.Optional;
