@@ -16,3 +16,22 @@ import java.time.LocalDateTime;                  // current date and time
 import java.util.Base64;                         // converts bytes into readable text
 import java.util.List;
 import java.util.Optional;
+
+// COMPONENT 04 - Admin Management
+// Owner: IT26101539
+// @Service: tells Spring this class holds the business logic
+// implements AdminOperations: must write registerAdmin() and logAction() (Abstraction)
+@Service
+public class AdminService implements AdminOperations {
+
+    // The two repositories this service uses to read/write files
+    private final AdminRepository adminRepository;
+    private final ActivityLogRepository logRepository;
+
+    // Constructor injection: Spring automatically gives the repository objects (@Autowired)
+    @Autowired
+    public AdminService(AdminRepository adminRepository, ActivityLogRepository logRepository) {
+        this.adminRepository = adminRepository;
+        this.logRepository = logRepository;
+    }
+
