@@ -14,3 +14,12 @@
                 <a th:href="@{/suppliers/register}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Supplier</a>
             </div>
         </div>
+
+        <!-- Search Form -->
+        <div class="card mb-4 p-3 bg-light">
+            <form th:action="@{/suppliers}" method="get" class="d-flex">
+                <input class="form-control me-2" type="search" name="search" th:value="${searchQuery}" placeholder="Search by name or brand...">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+                <a th:if="${searchQuery != null}" th:href="@{/suppliers}" class="btn btn-outline-secondary ms-2">Clear</a>
+            </form>
+        </div>
