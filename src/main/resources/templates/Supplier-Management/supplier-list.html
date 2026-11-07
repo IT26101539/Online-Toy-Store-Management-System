@@ -53,3 +53,7 @@
                         <!-- Contact and brands columns -->
                         <td th:text="${supplier.contact}"></td>
                         <td th:text="${supplier.brandsSupplied}"></td>
+                        <!-- Type badge: green for LOCAL, blue for INTERNATIONAL -->
+                        <td>
+                            <span class="badge" th:classappend="${supplier.type == 'LOCAL' ? 'bg-success' : 'bg-info text-dark'}" th:text="${supplier.type}"></span>
+                        </td>
