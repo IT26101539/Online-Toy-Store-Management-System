@@ -1,5 +1,7 @@
+// This file belongs to the Admin_Management.repository package (folder)
 package com.toystore.Admin_Management.repository;
 
+// FileHandler: helper class (common package) that reads/writes text files
 import com.toystore.common.FileHandler;
 import com.toystore.Admin_Management.model.Admin;
 import org.springframework.stereotype.Repository;
@@ -10,12 +12,18 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-// COMPONENT 04: Admin Management 
-// Owner - Placeholder
+// COMPONENT 04 - Admin Management
+// Owner - IT26101539
+
+// @Repository: Spring manages this class and treats it as the data access layer
 @Repository
 public class AdminRepository {
+
+    // Helper object used to read/write the admins text file
     private final FileHandler fileHandler;
 
+
+    // Constructor - links this repository to the file "admins.txt
     public AdminRepository() {
         this.fileHandler = new FileHandler("admins.txt");
     }
