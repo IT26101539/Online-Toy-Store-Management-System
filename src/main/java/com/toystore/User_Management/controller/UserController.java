@@ -1,0 +1,174 @@
+package com.toystore.User_Management.controller;
+
+// Import necessary common,model,service and Spring framework libraries
+import com.toystore.common.SessionUtil;
+import com.toystore.User_Management.model.User;
+import com.toystore.User_Management.service.UserService;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+
+/**
+ // COMPONENT 01: User Management | Owner: IT26101544
+ - Controller class to handle all user management requests
+ */
+@Controller
+@RequestMapping("/users") // Base URL prefix for all endpoints defined in this controller class
+public class UserController {
+
+    // Declare private service and utility dependencies for business logic and session management
+    private final UserService userService;
+    private final com.toystore.Admin_Management.service.AdminService adminService;
+    private final SessionUtil sessionUtil;
+
+    // Constructor-based dependency injection for Spring to wire dependencies automatically
+    @Autowired
+    public UserController(UserService userService,com.toystore.Admin_Management.service.AdminService adminService,SessionUtil sessionUtil) {
+        this.userService =userService;
+        this.adminService =adminService;
+        this.sessionUtil =sessionUtil;
+    }
+
+    // HTTP GET endpoint to display the user registration view page
+    @GetMapping("/register")
+    public String showRegisterPage() {
+        // Returns the path to the Thymeleaf registration template
+        return "User_Management/register";
+    }
+
+    // HTTP POST endpoint to process user registration form submissions
+    @PostMapping("/register")
+    public String registerUser(@RequestParam String username,@RequestParam String password,
+                               @RequestParam String email,@RequestParam String membershipType,
+                               RedirectAttributes redirectAttributes) {
+        try {
+            // Invoke service method to register a new regular user with provided details
+            userService.registerRegularUser(username,password,email,membershipType);
+            // Add a success flash message to be displayed on the redirected login page
+            redirectAttributes.addFlashAttribute("Success Message", "Registration successful. Please login.");
+            // Redirect user to the login page on successful registration
+            return "redirect:/users/login";
+        } catch (Exception e) {
+            // Catch any registration exceptions, store error message, and redirect back to registration form
+            redirectAttributes.addFlashAttribute("Error Message",e.getMessage());
+            return "redirect:/users/register";
+        }
+    }
+
+    // HTTP GET endpoint to display the user login view page
+    @GetMapping("/login")
+    public String showLoginPage() {
+        // Returns the path to the Thymeleaf login template
+        return "User_Management/login";
+    }
+
+    // HTTP POST endpoint to handle unified authentication for both regular Users and Admins
+    @PostMapping("/login")
+    public String loginUser(@RequestParam String username,@RequestParam String password,HttpSession session,RedirectAttributes redirectAttributes) {
+        try {
+            // Attempt to authenticate credentials as a regular user first
+            User user =userService.login(username, password);
+            // Initialize and store user details in the HTTP session
+            sessionUtil.loginUser(session,user.getId(),user.getUsername(),user.getRole());
+            // Add a welcoming success message for the regular user
+            redirectAttributes.addFlashAttribute("Success Message","Welcome back, " + user.getUsername() + "!");
+            // Redirect authenticated regular user to the main homepage
+            return "redirect:/";
+        } catch (Exception e) {
+            // If regular user authentication fails,try authenticating as an Admin as a fallback
+            try {
+                com.toystore.Admin_Management.model.Admin admin =adminService.login(username,password);
+                // Initialize and store admin details in the HTTP session
+                sessionUtil.loginUser(session,admin.getId(),admin.getUsername(),admin.getRole());
+                // Add welcoming success message for the admin
+                redirectAttributes.addFlashAttribute("successMessage","Welcome back, Admin " +admin.getUsername() + "!");
+                // Log the admin login action for auditing purposes
+                adminService.logAction(admin.getId(),"Logged in");
+                // Redirect authenticated admin to the admin dashboard
+                return "redirect:/admin/dashboard";
+            } catch (Exception ex) {
+                // If both regular user and admin logins fail, set error message and redirect back to login page
+                redirectAttributes.addFlashAttribute("errorMessage","Invalid username or password");
+                return "redirect:/users/login";
+            }
+        }
+    }
+
+    // HTTP GET endpoint to clear active session data and log out the user
+    @GetMapping("/logout")
+    public String logoutUser(HttpSession session,RedirectAttributes redirectAttributes) {
+        // Clear all attributes associated with the current user session
+        sessionUtil.logoutUser(session);
+        // Add a success message indicating successful logout
+        redirectAttributes.addFlashAttribute("Success Message", "Logged out successfully.");
+        // Redirect user back to the public homepage
+        return "redirect:/";
+    }
+
+    // HTTP GET endpoint to fetch and display the profile page for the currently logged-in user
+    @GetMapping("/profile")
+    public String showProfile(HttpSession session,Model model) {
+        // Security check:redirect unauthenticated users to the login page
+        if (!sessionUtil.isLoggedIn(session)) return "redirect:/users/login";
+        // Retrieve user entity using the unique user ID stored in the session
+        User user =userService.getUserById(sessionUtil.getLoggedInUserId(session));
+        // Add user object to the model to populate the profile view form
+        model.addAttribute("user",user);
+        // Returns the path to the profile update Thymeleaf template
+        return "User_Management/profile-update";
+    }
+
+    // HTTP POST endpoint to update user profile information and optional profile image upload
+    @PostMapping("/profile")
+    public String updateProfile(@RequestParam String email,
+                                @RequestParam(required = false) String membershipType,
+                                @RequestParam(value = "image", required = false) org.springframework.web.multipart.MultipartFile image,HttpSession session,RedirectAttributes redirectAttributes) {
+        // Security check:ensure the user is logged in before allowing profile modification
+        if (!sessionUtil.isLoggedIn(session)) return "redirect:/users/login";
+
+        try {
+            // Extract logged-in user ID from session context
+            String userId =sessionUtil.getLoggedInUserId(session);
+            // Call service layer to update profile details and profile picture file
+            userService.updateUserProfile(userId,email,membershipType,image);
+            // Add success message on successful update
+            redirectAttributes.addFlashAttribute("Success Message","Profile updated successfully.");
+        } catch (Exception e) {
+            // Catch update errors and display error message
+            redirectAttributes.addFlashAttribute("Error Message",e.getMessage());
+        }
+        // Redirect back to the profile view page
+        return "redirect:/users/profile";
+    }
+
+    // HTTP GET endpoint to retrieve and display a list of all registered users in the system
+    @GetMapping
+    public String listUsers(HttpSession session,Model model) {
+        // Security check:restrict access so only users with Admin roles can view the list
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        // Fetch complete list of users from the user service layer
+        List<User> users =userService.getAllUsers();
+        // Add the retrieved user list to the model for view rendering
+        model.addAttribute("users",users);
+        // Returns the path to the user management list template
+        return "User_Management/user-list";
+    }
+
+    // HTTP POST endpoint to delete a specific user account by their unique ID
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable String id,HttpSession session,RedirectAttributes redirectAttributes) {
+        // Security check:restrict delete operations exclusively to Admin users
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+        // Invoke service method to delete the target user from the system repository
+        userService.deleteUser(id);
+        // Add success message confirming deletion
+        redirectAttributes.addFlashAttribute("Success Message","User deleted successfully.");
+        // Redirect back to the user management listing page
+        return "redirect:/users";
+    }
+}
