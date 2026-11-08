@@ -1,0 +1,80 @@
+<!-- Declares this as an HTML5 document -->
+<!DOCTYPE html>
+
+<!-- th = Thymeleaf namespace (lets us use th:action, th:href, etc.)
+     layout = Thymeleaf Layout Dialect namespace
+     layout:decorate = this page is wrapped inside the common layout (navbar, footer, CSS) -->
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}">
+<head>
+    <!-- Page title shown in the browser tab -->
+    <title>Register Admin</title>
+</head>
+
+<body>
+<!-- This block is inserted into the "content" area of common/layout.html -->
+<div layout:fragment="content">
+
+    <!-- Bootstrap: row + justify-content-center = centers the form horizontally -->
+    <div class="row justify-content-center">
+        <!-- Column width: medium screens = 6/12, large screens = 5/12 -->
+        <div class="col-md-6 col-lg-5">
+
+            <!-- Card with padding and a blue border -->
+            <div class="card p-4 border-primary">
+
+                <!-- Page heading -->
+                <div class="text-center mb-4">
+                    <h2 class="text-primary">Add New Admin</h2>
+                </div>
+
+                <!-- Form: sends data to /admin/register using POST.
+                     This matches @PostMapping("/register") in AdminController.
+                     Each input's "name" must match the @RequestParam name in the controller -->
+                <form th:action="@{/admin/register}" method="post">
+
+                    <!-- Username input (name="username" -> @RequestParam String username) -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-bold">Username</label>
+                        <!-- "required" = browser won't submit if this is empty -->
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+
+                    <!-- Email input (type="email" checks the email format) -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+
+                    <!-- Password input (type="password" hides the characters) -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-bold">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+
+                    <!-- Permissions dropdown. The "value" is what is sent to the server;
+                         the text between the tags is what the user sees -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Permissions</label>
+                        <select class="form-select" name="permissions">
+                            <option value="ALL">Full Access (Super Admin)</option>
+                            <option value="READ_ONLY">Read Only</option>
+                        </select>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2">
+                        <!-- Submit button: sends the form -->
+                        <button type="submit" class="btn btn-primary btn-lg">Register Admin</button>
+                        <!-- Cancel: goes back to the admin list (GET /admin/list) -->
+                        <a th:href="@{/admin/list}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
