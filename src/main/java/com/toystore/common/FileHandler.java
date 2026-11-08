@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/** Provides lock-protected reading and writing for the application text data files. */
 public class FileHandler {
 
     private static final String DATA_DIR = "data";

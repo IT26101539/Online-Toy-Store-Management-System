@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-/** Validates, stores, deletes, and resolves paths for uploaded images. */
 public class ImageStorageUtil {
 
     public static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB

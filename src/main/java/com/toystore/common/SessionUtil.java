@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 
 @Component
-/** Reads and updates login identity and role information in the HTTP session. */
 public class SessionUtil {
 
     public void loginUser(HttpSession session, String userId, String username, String role) {

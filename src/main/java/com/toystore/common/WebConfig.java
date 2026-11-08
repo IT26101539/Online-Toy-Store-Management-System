@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Configuration
-/** Maps the uploads directory to a URL path so stored files can be served by the web app. */
 public class WebConfig implements WebMvcConfigurer {
 
     @Override

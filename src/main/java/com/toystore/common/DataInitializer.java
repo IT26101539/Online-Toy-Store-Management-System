@@ -12,7 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @Component
-/** Creates upload folders and seeds initial application records when the corresponding data files are empty. */
 public class DataInitializer implements CommandLineRunner {
 
     private final AdminService adminService;
