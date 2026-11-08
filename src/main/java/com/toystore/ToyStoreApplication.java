@@ -1,3 +1,17 @@
+package com.toystore;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+/** Bootstraps the Spring Boot application. */
+public class ToyStoreApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ToyStoreApplication.class, args);
+    }
+
+}
 // This file belongs to the root package. All other packages
 // (Admin_Management, User_Management, Toy_Management ...) are inside com.toystore
 package com.toystore;
