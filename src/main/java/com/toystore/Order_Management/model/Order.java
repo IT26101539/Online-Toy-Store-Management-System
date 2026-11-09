@@ -11,3 +11,13 @@ public class Order {
     private String deliveryAddress;
     private String status; // PENDING,SHIPPED,DELIVERED,CANCELLED
     private String orderDate;
+
+    public Order(String id,String userId,String itemsSummary,double totalAmount,String deliveryAddress,String status,String orderDate) {
+        this.id = id;
+        this.userId = userId;
+        this.itemsSummary = itemsSummary;
+        this.totalAmount = totalAmount;
+        this.deliveryAddress = deliveryAddress;
+        this.status = status;
+        this.orderDate = orderDate;
+    }
