@@ -8,3 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+// COMPONENT 03: Order Management | Owner: Placeholder
+@Repository
+public class OrderRepository {
+    private final FileHandler fileHandler;
+
+    public OrderRepository() {
+        this.fileHandler = new FileHandler("orders.txt");
+    }
