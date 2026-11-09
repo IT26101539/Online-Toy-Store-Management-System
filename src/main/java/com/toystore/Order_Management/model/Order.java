@@ -31,3 +31,20 @@ public class Order {
 
     public String getItemsSummary() { return itemsSummary; }
     public void setItemsSummary(String itemsSummary) { this.itemsSummary = itemsSummary; }
+
+    public double getTotalAmount() { return totalAmount; }
+    public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
+
+    public String getDeliveryAddress() { return deliveryAddress; }
+    public void setDeliveryAddress(String deliveryAddress) { this.deliveryAddress = deliveryAddress; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public String getOrderDate() { return orderDate; }
+    public void setOrderDate(String orderDate) { this.orderDate = orderDate; }
+
+    public String toFileString() {
+        return id + "|" + userId + "|" + itemsSummary + "|" + totalAmount + "|" + deliveryAddress + "|" + status + "|" + orderDate;
+    }
+}

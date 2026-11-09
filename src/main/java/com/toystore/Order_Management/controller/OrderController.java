@@ -49,7 +49,7 @@ public class OrderController {
         
         Toy toy = toyService.getToyById(toyId);
         if (toy == null || toy.getStockQuantity() < quantity) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Not enough stock.");
+            redirectAttributes.addFlashAttribute("errorMessage","Not enough stock.");
             return "redirect:/toys";
         }
 
@@ -57,7 +57,7 @@ public class OrderController {
         boolean found = false;
         for (CartItem item : cart) {
             if (item.getToy().getId().equals(toyId)) {
-                item.setQuantity(item.getQuantity() + quantity);
+                item.setQuantity(item.getQuantity()+quantity);
                 found = true;
                 break;
             }
