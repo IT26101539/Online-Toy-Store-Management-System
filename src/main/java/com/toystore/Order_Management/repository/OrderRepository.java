@@ -21,3 +21,15 @@ public class OrderRepository {
     public synchronized void save(Order order) {
         fileHandler.appendLine(order.toFileString());
     }
+
+    public synchronized List<Order> findAll() {
+        List<String> lines = fileHandler.readAllLines();
+        List<Order> orders = new ArrayList<>();
+        for (String line : lines) {
+            String[] parts = line.split("\\|");
+            if (parts.length >= 7) {
+                orders.add(new Order(parts[0], parts[1], parts[2], Double.parseDouble(parts[3]), parts[4], parts[5], parts[6]));
+            }
+        }
+        return orders;
+    }
