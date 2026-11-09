@@ -13,3 +13,13 @@
                 <div class="card p-4">
                     <h3 class="mb-4">Edit Supplier: <span class="text-primary" th:text="${supplier.name}"></span></h3>
                     <form th:action="@{/suppliers/edit/{id}(id=${supplier.id})}" method="post" enctype="multipart/form-data">
+                        <!-- Shows the current logo -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Current Logo</label>
+                            <div class="mb-2">
+                                <img th:src="${supplier.getImageUrl()}" 
+                                     alt="Supplier Logo" 
+                                     class="rounded border shadow-sm"
+                                     style="height: 100px; width: 140px; object-fit: cover;"
+                                     onerror="this.src='/images/placeholder-supplier.svg'">
+                            </div>
