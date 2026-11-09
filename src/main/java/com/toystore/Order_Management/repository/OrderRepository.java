@@ -45,3 +45,14 @@ public class OrderRepository {
                 .filter(o -> o.getUserId().equals(userId))
                 .collect(Collectors.toList());
     }
+
+    public synchronized void update(Order updatedOrder) {
+        List<Order> orders = findAll();
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i).getId().equals(updatedOrder.getId())) {
+                orders.set(i, updatedOrder);
+                break;
+            }
+        }
+        saveAll(orders);
+    }
