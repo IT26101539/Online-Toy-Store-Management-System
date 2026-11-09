@@ -63,3 +63,10 @@ public class OrderRepository {
                 .collect(Collectors.toList());
         saveAll(orders);
     }
+
+    private void saveAll(List<Order> orders) {
+        List<String> lines = orders.stream().map(Order::toFileString).collect(Collectors.toList());
+        fileHandler.writeAllLines(lines);
+    }
+}
+
