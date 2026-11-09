@@ -7,6 +7,7 @@
 </head>
 <body>
     <div layout:fragment="content">
+        <!-- Page title and Add Supplier button -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Supplier Management</h2>
             <div>
@@ -23,6 +24,7 @@
             </form>
         </div>
 
+        <!-- Supplier table with column headings -->
         <div class="table-responsive">
             <table class="table table-hover bg-white rounded shadow-sm">
                 <thead class="table-dark">
@@ -36,6 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Logo and name of each supplier (one row for each supplier) -->
                     <tr th:each="supplier : ${suppliers}">
                         <td>
                             <div class="d-flex align-items-center">
@@ -47,12 +50,16 @@
                                 <span class="fw-bold" th:text="${supplier.name}"></span>
                             </div>
                         </td>
+                        <!-- Contact and brands columns -->
                         <td th:text="${supplier.contact}"></td>
                         <td th:text="${supplier.brandsSupplied}"></td>
+                        <!-- Type badge: green for LOCAL, blue for INTERNATIONAL -->
                         <td>
                             <span class="badge" th:classappend="${supplier.type == 'LOCAL' ? 'bg-success' : 'bg-info text-dark'}" th:text="${supplier.type}"></span>
                         </td>
+                        <!-- Estimated delivery time (different for each supplier type) -->
                         <td th:text="${supplier.getDeliveryTimeEstimate()}"></td>
+                        <!-- Edit button and Delete button (asks for confirmation) -->
                         <td>
                             <a th:href="@{/suppliers/edit/{id}(id=${supplier.id})}" class="btn btn-sm btn-outline-primary">Edit</a>
                             <form th:action="@{/suppliers/delete/{id}(id=${supplier.id})}" method="post" class="d-inline" onsubmit="return confirm('Delete this supplier?');">
@@ -60,6 +67,7 @@
                             </form>
                         </td>
                     </tr>
+                    <!-- Message shown when no suppliers are found -->
                     <tr th:if="${#lists.isEmpty(suppliers)}">
                         <td colspan="6" class="text-center py-3">No suppliers found.</td>
                     </tr>
