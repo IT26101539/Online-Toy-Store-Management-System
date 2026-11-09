@@ -56,3 +56,10 @@ public class OrderRepository {
         }
         saveAll(orders);
     }
+
+    public synchronized void delete(String id) {
+        List<Order> orders = findAll().stream()
+                .filter(o -> !o.getId().equals(id))
+                .collect(Collectors.toList());
+        saveAll(orders);
+    }
