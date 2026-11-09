@@ -17,3 +17,7 @@ public class OrderRepository {
     public OrderRepository() {
         this.fileHandler = new FileHandler("orders.txt");
     }
+
+    public synchronized void save(Order order) {
+        fileHandler.appendLine(order.toFileString());
+    }
