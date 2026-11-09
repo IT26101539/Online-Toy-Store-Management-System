@@ -33,3 +33,9 @@ public class OrderRepository {
         }
         return orders;
     }
+
+    public Optional<Order> findById(String id) {
+        return findAll().stream()
+                .filter(o -> o.getId().equals(id))
+                .findFirst();
+    }
