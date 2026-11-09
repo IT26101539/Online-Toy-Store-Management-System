@@ -21,3 +21,13 @@ public class Order {
         this.status = status;
         this.orderDate = orderDate;
     }
+
+    // Getters and Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
+
+    public String getItemsSummary() { return itemsSummary; }
+    public void setItemsSummary(String itemsSummary) { this.itemsSummary = itemsSummary; }
