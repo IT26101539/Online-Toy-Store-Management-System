@@ -32,3 +32,23 @@
                             <label class="form-label fw-bold">Type</label>
                             <input type="text" class="form-control" th:value="${supplier.type}" disabled>
                         </div>
+                        <!-- Contact details -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Contact Details</label>
+                            <input type="text" class="form-control" name="contact" th:value="${supplier.contact}" required>
+                        </div>
+                        <!-- Brands supplied -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Brands Supplied</label>
+                            <input type="text" class="form-control" name="brands" th:value="${supplier.brandsSupplied}" required>
+                        </div>
+                        <!-- Update and cancel buttons -->
+                        <button type="submit" class="btn btn-primary">Update Supplier</button>
+                        <a th:href="@{/suppliers}" class="btn btn-outline-secondary ms-2">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
