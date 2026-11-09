@@ -9,10 +9,10 @@ public class Order {
     private String itemsSummary; // Format: toyId1:qty1,toyId2:qty2
     private double totalAmount;
     private String deliveryAddress;
-    private String status; // PENDING, SHIPPED, DELIVERED, CANCELLED
+    private String status; // PENDING,SHIPPED,DELIVERED,CANCELLED
     private String orderDate;
 
-    public Order(String id, String userId, String itemsSummary, double totalAmount, String deliveryAddress, String status, String orderDate) {
+    public Order(String id,String userId,String itemsSummary,double totalAmount,String deliveryAddress,String status,String orderDate) {
         this.id = id;
         this.userId = userId;
         this.itemsSummary = itemsSummary;
