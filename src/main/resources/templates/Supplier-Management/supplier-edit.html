@@ -27,3 +27,8 @@
                             <label class="form-label fw-bold">Replace Logo <span class="text-muted fw-normal">(Optional &mdash; JPG, PNG, WEBP, max 5MB)</span></label>
                             <input type="file" class="form-control" name="image" accept=".jpg,.jpeg,.png,.webp">
                         </div>
+                        <!-- Supplier type cannot be changed -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Type</label>
+                            <input type="text" class="form-control" th:value="${supplier.type}" disabled>
+                        </div>
