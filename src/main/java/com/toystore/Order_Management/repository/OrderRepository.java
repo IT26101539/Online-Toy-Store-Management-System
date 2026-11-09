@@ -39,3 +39,9 @@ public class OrderRepository {
                 .filter(o -> o.getId().equals(id))
                 .findFirst();
     }
+
+    public List<Order> findByUserId(String userId) {
+        return findAll().stream()
+                .filter(o -> o.getUserId().equals(userId))
+                .collect(Collectors.toList());
+    }
