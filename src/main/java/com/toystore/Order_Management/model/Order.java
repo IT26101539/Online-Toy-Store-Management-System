@@ -43,3 +43,8 @@ public class Order {
 
     public String getOrderDate() { return orderDate; }
     public void setOrderDate(String orderDate) { this.orderDate = orderDate; }
+
+    public String toFileString() {
+        return id + "|" + userId + "|" + itemsSummary + "|" + totalAmount + "|" + deliveryAddress + "|" + status + "|" + orderDate;
+    }
+}
