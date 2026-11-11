@@ -116,6 +116,61 @@ public class AdminController {
         return "redirect:/admin/list";
     }
 
+    // Handles GET /admin/edit/{id} : shows the edit form, pre-filled with this admin's data
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable String id, HttpSession session, Model model) {
+        // Security check: only logged-in admins can access this page
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+
+        // Find the admin by the ID taken from the URL
+        Admin admin = adminService.getAdminById(id);
+
+        // If no admin exists with this ID, go back to the list instead of showing a broken form
+        if (admin == null) {
+            return "redirect:/admin/list";
+        }
+
+        // Send the admin's current data to the HTML page so the form fields can be pre-filled
+        model.addAttribute("admin", admin);
+
+        // Show templates/Admin_Management/admin-edit.html
+        return "Admin_Management/admin-edit";
+    }
+
+    // Handles POST /admin/edit/{id} : runs when the edit form is submitted
+    @PostMapping("/edit/{id}")
+    public String updateAdmin(@PathVariable String id, @RequestParam String email,
+                              @RequestParam String permissions, HttpSession session,
+                              RedirectAttributes redirectAttributes) {
+        // Security check again, since this is a separate request from showEditForm()
+        if (!sessionUtil.isAdmin(session)) return "redirect:/";
+
+        // Look up the admin again (we only have the ID and new values from the form)
+        Admin admin = adminService.getAdminById(id);
+
+        // If the admin was deleted by someone else in the meantime, don't continue
+        if (admin == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Admin not found.");
+            return "redirect:/admin/list";
+        }
+
+        // Update the admin object in memory with the new values from the form
+        admin.setEmail(email);
+        admin.setPermissions(permissions);
+
+        // Save the updated admin back to admins.txt (via the service and repository)
+        adminService.updateAdmin(admin);
+
+        // Record this change in the activity log (who did it, and what was done)
+        adminService.logAction(sessionUtil.getLoggedInUserId(session), "Updated admin ID: " + id);
+
+        // Flash attribute: message shown once, after the redirect, then it disappears
+        redirectAttributes.addFlashAttribute("successMessage", "Admin updated successfully.");
+
+        // Go back to the admin list to see the change
+        return "redirect:/admin/list";
+    }
+
     // Handles POST /admin/delete/{id} : {id} is read from the URL by @PathVariable
     @PostMapping("/delete/{id}")
     public String deleteAdmin(@PathVariable String id, HttpSession session, RedirectAttributes redirectAttributes) {
